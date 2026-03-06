@@ -225,16 +225,11 @@ h6 {
     z-index: 1001;
 }
 
-.logo-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    background: var(--primary);
-    border-radius: var(--radius);
-    font-size: 1rem;
-    color: #fff;
+.logo-img {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+    color: var(--primary);
 }
 
 .logo-text span {
@@ -1224,6 +1219,10 @@ h6 {
 
 .footer-brand .logo {
     margin-bottom: 1rem;
+}
+
+.footer-brand .logo .logo-img {
+    color: #fff;
 }
 
 .footer-brand .logo .logo-text {
