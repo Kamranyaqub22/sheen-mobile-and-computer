@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { useRepairCatalog } from '../context/RepairCatalogContext'
+import { processImageFile } from '../utils/mediaLibrary'
 
 const emptyCategoryForm = {
   name: '',
@@ -98,6 +99,153 @@ function RepairRowEditor({ repair, onSave, onDelete }) {
   )
 }
 
+function MediaEditorCard({
+  title,
+  description,
+  mediaKey,
+  altKey,
+  imageUrl,
+  imageAlt,
+  onSave,
+  onClear,
+  emptyLabel,
+  uploadLabel,
+  hint,
+  uploadOptions,
+  previewClassName,
+}) {
+  const [urlValue, setUrlValue] = useState(imageUrl || '')
+  const [altValue, setAltValue] = useState(imageAlt || '')
+  const [isBusy, setIsBusy] = useState(false)
+  const [feedback, setFeedback] = useState('')
+
+  useEffect(() => {
+    setUrlValue(imageUrl || '')
+    setAltValue(imageAlt || '')
+    setFeedback('')
+  }, [imageAlt, imageUrl, title])
+
+  const handleSaveUrl = async () => {
+    setIsBusy(true)
+    setFeedback('')
+
+    try {
+      await onSave({
+        [mediaKey]: urlValue.trim(),
+        [altKey]: altValue.trim(),
+      })
+      setFeedback('Saved.')
+    } catch (error) {
+      setFeedback(error instanceof Error ? error.message : 'Could not save media.')
+    } finally {
+      setIsBusy(false)
+    }
+  }
+
+  const handleUpload = async (event) => {
+    const file = event.target.files?.[0]
+
+    if (!file) {
+      return
+    }
+
+    setIsBusy(true)
+    setFeedback('')
+
+    try {
+      const processedUrl = await processImageFile(file, uploadOptions)
+
+      await onSave({
+        [mediaKey]: processedUrl,
+        [altKey]: altValue.trim() || file.name.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' '),
+      })
+      setFeedback('Uploaded.')
+    } catch (error) {
+      setFeedback(error instanceof Error ? error.message : 'Could not process the selected image.')
+    } finally {
+      setIsBusy(false)
+      event.target.value = ''
+    }
+  }
+
+  const handleClear = async () => {
+    setIsBusy(true)
+    setFeedback('')
+
+    try {
+      await onClear()
+      setUrlValue('')
+      setAltValue('')
+      setFeedback('Removed.')
+    } catch (error) {
+      setFeedback(error instanceof Error ? error.message : 'Could not remove media.')
+    } finally {
+      setIsBusy(false)
+    }
+  }
+
+  return (
+    <div className="rounded-[26px] border border-[var(--color-border)] bg-white p-5 shadow-[0_18px_36px_rgba(37,23,8,0.05)]">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h3 className="text-lg font-extrabold text-[var(--color-ink)]">{title}</h3>
+          <p className="mt-2 text-sm leading-relaxed text-[var(--color-muted)]">{description}</p>
+        </div>
+        <span className="rounded-full bg-[var(--color-surface)] px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[var(--color-clay)]">
+          {uploadLabel}
+        </span>
+      </div>
+
+      <div className={`mt-4 overflow-hidden rounded-[22px] border border-[var(--color-border)] bg-[var(--color-surface)] ${previewClassName}`}>
+        {imageUrl ? (
+          <img src={imageUrl} alt={imageAlt || title} className="h-full w-full object-cover" loading="lazy" />
+        ) : (
+          <div className="flex h-full min-h-[12rem] items-center justify-center px-6 text-center text-sm font-medium text-[var(--color-muted)]">
+            {emptyLabel}
+          </div>
+        )}
+      </div>
+
+      <div className="mt-4 space-y-3">
+        <div>
+          <label className="block text-sm font-semibold text-[var(--color-ink)]">Paste image URL</label>
+          <input
+            className="form-input mt-2"
+            value={urlValue}
+            onChange={(event) => setUrlValue(event.target.value)}
+            placeholder="https://example.com/image.webp"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-semibold text-[var(--color-ink)]">Alt text</label>
+          <input
+            className="form-input mt-2"
+            value={altValue}
+            onChange={(event) => setAltValue(event.target.value)}
+            placeholder="Describe the uploaded image"
+          />
+        </div>
+      </div>
+
+      <div className="mt-4 flex flex-wrap gap-3">
+        <button type="button" className="btn-secondary text-sm" onClick={handleSaveUrl} disabled={isBusy || !urlValue.trim()}>
+          Save URL
+        </button>
+        <label className={`btn-primary cursor-pointer text-sm ${isBusy ? 'opacity-70' : ''}`}>
+          Upload file
+          <input type="file" accept="image/*" className="hidden" onChange={handleUpload} disabled={isBusy} />
+        </label>
+        <button type="button" className="btn-secondary text-sm" onClick={handleClear} disabled={isBusy || (!imageUrl && !urlValue.trim())}>
+          Remove
+        </button>
+      </div>
+
+      <p className="mt-3 text-xs leading-relaxed text-[var(--color-muted)]">{hint}</p>
+      {feedback ? <div className="mt-3 text-sm font-medium text-[var(--color-ink)]">{feedback}</div> : null}
+    </div>
+  )
+}
+
 export default function Admin() {
   const {
     authReady,
@@ -127,7 +275,13 @@ export default function Admin() {
     requestAdminMagicLink,
     resetCatalog,
     clearBookings,
+    clearBrandMedia,
+    clearCategoryMedia,
+    clearModelMedia,
     session,
+    saveBrandMedia,
+    saveCategoryMedia,
+    saveModelMedia,
     signOutAdmin,
     syncError,
   } = useRepairCatalog()
@@ -861,6 +1015,78 @@ export default function Admin() {
           </div>
 
           <div className="space-y-6">
+            <div className="panel-card p-6">
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <div>
+                  <h2 className="text-2xl font-extrabold text-[var(--color-ink)]">Media library</h2>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--color-muted)]">
+                    Upload real category photos, brand logos, and model images so the public catalogue stops relying on placeholder artwork.
+                  </p>
+                </div>
+                <span className="rounded-full bg-[var(--color-surface)] px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[var(--color-clay)]">
+                  Instant preview
+                </span>
+              </div>
+              <p className="mt-3 text-xs leading-relaxed text-[var(--color-muted)]">
+                These uploads are stored in this browser for now, so you can curate the visuals locally and see the public pages update immediately.
+              </p>
+              <div className="mt-5 space-y-4">
+                {selectedCategory ? (
+                  <MediaEditorCard
+                    title={`${selectedCategory.name} category photo`}
+                    description="Large editorial image used as the visual anchor for this repair category and as the fallback photo for models without their own image yet."
+                    mediaKey="imageUrl"
+                    altKey="imageAlt"
+                    imageUrl={selectedCategory.imageUrl}
+                    imageAlt={selectedCategory.imageAlt}
+                    onSave={(values) => saveCategoryMedia(selectedCategory.id, values)}
+                    onClear={() => clearCategoryMedia(selectedCategory.id)}
+                    emptyLabel="No category image yet. Upload a real workshop or device photo."
+                    uploadLabel="Category"
+                    hint="Best results: landscape photo around 1600px wide."
+                    uploadOptions={{ maxWidth: 1600, maxHeight: 1200, quality: 0.84 }}
+                    previewClassName="aspect-[16/10]"
+                  />
+                ) : null}
+
+                {selectedBrand ? (
+                  <MediaEditorCard
+                    title={`${selectedBrand.name} logo`}
+                    description="Upload the real brand mark you want to show in the catalog chips, headers, and repair flows."
+                    mediaKey="logoUrl"
+                    altKey="logoAlt"
+                    imageUrl={selectedBrand.logoUrl}
+                    imageAlt={selectedBrand.logoAlt}
+                    onSave={(values) => saveBrandMedia(selectedBrand.id, values)}
+                    onClear={() => clearBrandMedia(selectedBrand.id)}
+                    emptyLabel="No brand logo uploaded yet."
+                    uploadLabel="Logo"
+                    hint="Best results: square PNG or WebP with transparent background."
+                    uploadOptions={{ maxWidth: 900, maxHeight: 900, quality: 0.9 }}
+                    previewClassName="aspect-[1/1] max-w-[13rem]"
+                  />
+                ) : null}
+
+                {selectedModel ? (
+                  <MediaEditorCard
+                    title={`${selectedModel.name} model image`}
+                    description="Use an actual photo for the exact device model so the model page, booking flow, and brand pages feel grounded and specific."
+                    mediaKey="imageUrl"
+                    altKey="imageAlt"
+                    imageUrl={selectedModel.imageUrl}
+                    imageAlt={selectedModel.imageAlt}
+                    onSave={(values) => saveModelMedia(selectedModel.id, values)}
+                    onClear={() => clearModelMedia(selectedModel.id)}
+                    emptyLabel="No model image yet. The category photo is being used as the fallback."
+                    uploadLabel="Model"
+                    hint="Best results: portrait or product shot around 1200-1600px."
+                    uploadOptions={{ maxWidth: 1600, maxHeight: 1600, quality: 0.84 }}
+                    previewClassName="aspect-[4/5]"
+                  />
+                ) : null}
+              </div>
+            </div>
+
             <div className="panel-card p-6">
               <h2 className="text-2xl font-extrabold text-[var(--color-ink)]">Repair bookings</h2>
               <p className="mt-2 text-sm text-[var(--color-muted)]">

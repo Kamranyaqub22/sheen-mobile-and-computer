@@ -8,7 +8,7 @@ const localBusinessSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   name: 'PC & Mobile Phone Repair Shop',
-  image: '',
+  image: 'https://sheenrepair.co.uk/media/hero-repair-shop.png',
   url: 'https://sheenrepair.co.uk',
   telephone: '+442088787266',
   address: {
@@ -36,6 +36,8 @@ const localBusinessSchema = JSON.stringify({
 const mainServices = [
   {
     to: '/repairs/phones',
+    eyebrow: 'Walk-in favourite',
+    image: '/media/phone-repair.png',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
@@ -47,6 +49,8 @@ const mainServices = [
   },
   {
     to: '/repairs/laptops-macbooks',
+    eyebrow: 'Workshop diagnostics',
+    image: '/media/laptop-repair.png',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="20" x2="22" y2="20"/>
@@ -57,6 +61,8 @@ const mainServices = [
   },
   {
     to: '/book-repair?category=phones',
+    eyebrow: 'Popular repair',
+    image: '/media/phone-repair.png',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z"/>
@@ -68,6 +74,8 @@ const mainServices = [
   },
   {
     to: '/book-repair?category=phones',
+    eyebrow: 'Power issues',
+    image: '/media/phone-repair.png',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
@@ -79,6 +87,8 @@ const mainServices = [
   },
   {
     to: '/repairs/laptops-macbooks',
+    eyebrow: 'Board-level work',
+    image: '/media/laptop-repair.png',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
@@ -90,6 +100,8 @@ const mainServices = [
   },
   {
     to: '/repairs/game-consoles',
+    eyebrow: 'Consoles and HDMI',
+    image: '/media/gaming-repair.png',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/>
@@ -261,100 +273,129 @@ export default function Home() {
       </Helmet>
 
       {/* ── HERO ── */}
-      <section
-        style={{ backgroundColor: '#1c2d4a', backgroundImage: 'radial-gradient(ellipse at 70% 80%, rgba(192,57,43,0.18) 0%, transparent 60%)' }}
-        className="relative py-16 md:py-24"
-      >
-        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+      <section className="relative overflow-hidden bg-[#0e1724] py-16 md:py-24">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_18%,rgba(255,152,54,0.18)_0%,transparent_26%),radial-gradient(circle_at_82%_6%,rgba(255,255,255,0.08)_0%,transparent_24%)]" />
+        <div className="relative max-w-6xl mx-auto px-4 grid gap-10 lg:grid-cols-[1.02fr_0.98fr] items-center">
           <div>
-            <span className="section-label" style={{ color: '#f5a623' }}>East Sheen · Richmond · SW14</span>
-            <h1 className="text-3xl sm:text-4xl md:text-[2.6rem] font-bold text-white leading-tight mb-4">
-              Phone &amp; Computer Repairs<br className="hidden sm:block" />{' '}
-              in East Sheen, London
+            <span className="section-label text-[var(--color-orange-soft)]">East Sheen workshop · Real bench repairs · SW14</span>
+            <h1 className="max-w-3xl text-4xl font-black leading-tight text-white md:text-[3.5rem]">
+              Real repairs, done in-house on Sheen Lane.
             </h1>
-            <p className="text-white/75 text-lg leading-relaxed mb-8 max-w-lg">
-              Screens, batteries, motherboards and more — most repairs completed
-              the same day. Walk-ins welcome at{' '}
-              <strong className="text-white/90 font-medium">65 Sheen Lane, SW14</strong>.
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/74">
+              Phone, laptop, MacBook, console, and diagnostics work handled from our own bench space in East Sheen. No generic mail-away flow, no vague quoting, and no fake catalog visuals.
             </p>
-            <div className="flex flex-wrap gap-3">
+            <div className="mt-5 flex flex-wrap gap-2 text-sm text-white/72">
+              {['Same-day common jobs', 'Walk-ins welcome', 'Clear upfront quotes', 'Local independent shop'].map((item) => (
+                <span key={item} className="rounded-full border border-white/12 bg-white/6 px-3 py-1.5">{item}</span>
+              ))}
+            </div>
+            <div className="mt-8 flex flex-wrap gap-3">
               <a href="tel:02088787266" className="btn-primary text-base px-6 py-3">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                 </svg>
                 Call 020 8878 7266
               </a>
-              <a
-                href="https://wa.me/442088787266"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-whatsapp text-base px-6 py-3"
-              >
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
-                </svg>
-                WhatsApp Us
-              </a>
               <Link to="/book-repair" className="btn-outline-white text-base px-6 py-3">
                 Book Repair
               </Link>
+              <Link to="/repairs" className="btn-outline-white text-base px-6 py-3">
+                Browse Repairs
+              </Link>
+            </div>
+            <div className="mt-9 grid gap-3 sm:grid-cols-3">
+              {[
+                ['Most common repairs', 'Same day'],
+                ['Address', '65 Sheen Lane'],
+                ['Availability', 'Mon-Sat walk-ins'],
+              ].map(([label, value]) => (
+                <div key={label} className="rounded-[22px] border border-white/12 bg-white/6 px-4 py-4 backdrop-blur-sm">
+                  <div className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-white/48">{label}</div>
+                  <div className="mt-2 text-lg font-bold text-white">{value}</div>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Info card */}
-          <div
-            className="rounded-lg p-6 hidden md:block"
-            style={{ backgroundColor: 'rgba(255,255,255,0.07)', border: '1px solid rgba(255,255,255,0.12)' }}
-          >
-            <h2 className="text-white font-semibold text-lg mb-4">We repair:</h2>
-            <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-sm" style={{ color: 'rgba(255,255,255,0.78)' }}>
-              {['iPhones (all models)','Samsung Galaxy','Google Pixel & more','iPad & Tablets','MacBook Pro & Air','Windows Laptops','Smart TVs','PlayStation & Xbox','Nintendo Switch','Water-damaged devices','Data recovery','Software issues'].map((item) => (
-                <li key={item} className="flex items-center gap-2">
-                  <span style={{ color: '#f5a623', flexShrink: 0 }}>✓</span> {item}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-5 pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>
-              <span className="text-xs text-white/50 block mb-1">Location</span>
-              <span className="text-white/85 text-sm">65 Sheen Lane, London SW14 8AD</span>
+          <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_12rem]">
+            <div className="overflow-hidden rounded-[32px] border border-white/12 bg-white/8 shadow-[0_30px_70px_rgba(0,0,0,0.28)]">
+              <div className="relative aspect-[4/5] md:aspect-[4/4.8]">
+                <img src="/media/hero-repair-shop.png" alt="PC and mobile repair workshop in East Sheen" className="h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(9,13,20,0.05)_0%,rgba(9,13,20,0.54)_100%)]" />
+                <div className="absolute inset-x-5 bottom-5 rounded-[24px] border border-white/14 bg-black/24 px-5 py-4 text-white backdrop-blur-md">
+                  <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-white/64">Inside the shop</div>
+                  <div className="mt-2 text-xl font-bold">Bench repair workflow, parts wall, and walk-in support in one place.</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div className="overflow-hidden rounded-[28px] border border-white/12 bg-white/8 shadow-[0_22px_50px_rgba(0,0,0,0.24)]">
+                <div className="relative aspect-[4/5]">
+                  <img src="/media/phone-repair.png" alt="Phone repair in progress" className="h-full w-full object-cover" />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,18,27,0.02)_0%,rgba(12,18,27,0.65)_100%)]" />
+                  <div className="absolute inset-x-4 bottom-4 text-sm font-semibold text-white">Live phone bench work</div>
+                </div>
+              </div>
+              <div className="rounded-[28px] border border-white/12 bg-white/6 p-5 text-white backdrop-blur-sm">
+                <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-[var(--color-orange-soft)]">Opening hours</div>
+                <div className="mt-3 space-y-2 text-sm text-white/76">
+                  <div className="flex items-center justify-between gap-3"><span>Mon-Fri</span><span className="font-semibold text-white">9:00am - 6:30pm</span></div>
+                  <div className="flex items-center justify-between gap-3"><span>Saturday</span><span className="font-semibold text-white">9:30am - 5:30pm</span></div>
+                </div>
+                <Link to="/contact" className="mt-4 inline-flex text-sm font-semibold text-[var(--color-orange-soft)]">
+                  Get directions
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* ── SERVICES ── */}
-      <section className="section-pad" style={{ backgroundColor: '#f8f6f2' }}>
+      <section className="section-pad bg-[#f5efe7]">
         <div className="max-w-6xl mx-auto px-4">
-          <span className="section-label">What we fix</span>
-          <h2 className="text-2xl sm:text-3xl font-bold mb-2" style={{ color: '#1c2d4a' }}>
-            Repair services in East Sheen
-          </h2>
-          <p className="text-gray-500 mb-8 max-w-2xl">
-            From a cracked screen to a water-damaged motherboard — we handle most repairs in-house
-            without needing to send your device away.
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <span className="section-label">What we fix</span>
+              <h2 className="text-3xl font-black text-[var(--color-ink)] md:text-[2.4rem]">
+                Core repair work, shown like a real workshop instead of a template catalog.
+              </h2>
+            </div>
+            <Link to="/repairs" className="btn-secondary text-sm self-start md:self-auto">Browse full repair catalog</Link>
+          </div>
+          <p className="mt-4 max-w-3xl text-base leading-relaxed text-[var(--color-muted)]">
+            From cracked phone screens to board-level laptop faults and console HDMI issues, the shop works across the common jobs customers actually bring through the door.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {mainServices.map(({ to, icon, title, desc }) => (
-              <Link key={title} to={to} className="service-card group">
-                <div className="mb-3" style={{ color: '#1c2d4a' }}>{icon}</div>
-                <h3 className="font-semibold text-gray-900 mb-1 group-hover:text-accent"
-                    style={{ fontSize: '1rem', color: '#1c2d4a' }}>
-                  {title}
-                </h3>
-                <p className="text-sm leading-relaxed" style={{ color: '#555' }}>{desc}</p>
-                <span className="mt-3 text-sm font-medium inline-flex items-center gap-1" style={{ color: '#c0392b' }}>
-                  Learn more
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true">
-                    <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-                  </svg>
-                </span>
+          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {mainServices.map(({ to, title, desc, image, eyebrow }) => (
+              <Link key={title} to={to} className="group overflow-hidden rounded-[30px] border border-[var(--color-border)] bg-white shadow-[0_24px_50px_rgba(37,23,8,0.06)] transition-transform duration-200 hover:-translate-y-1">
+                <div className="relative h-52 overflow-hidden">
+                  <img src={image} alt={title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,18,27,0.04)_0%,rgba(12,18,27,0.7)_100%)]" />
+                  <div className="absolute left-4 top-4 rounded-full border border-white/14 bg-black/18 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/76 backdrop-blur-sm">
+                    {eyebrow}
+                  </div>
+                  <div className="absolute inset-x-4 bottom-4 text-white">
+                    <div className="text-xl font-bold">{title}</div>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <p className="text-sm leading-relaxed text-[var(--color-muted)]">{desc}</p>
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-orange-deep)]">
+                    Explore service
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true">
+                      <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                  </span>
+                </div>
               </Link>
             ))}
           </div>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link to="/repairs" className="btn-secondary text-sm">Browse Repairs</Link>
             <Link to="/book-repair" className="btn-secondary text-sm">Book Repair</Link>
-            <Link to="/other-repairs" className="btn-secondary text-sm">TV &amp; Other Repairs</Link>
+            <Link to="/contact" className="btn-secondary text-sm">Talk to the shop</Link>
           </div>
         </div>
       </section>

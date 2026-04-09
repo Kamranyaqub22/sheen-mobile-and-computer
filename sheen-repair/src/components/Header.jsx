@@ -59,15 +59,18 @@ export default function Header() {
             className="flex min-w-0 items-center gap-3 leading-tight"
             aria-label="PC & Mobile Phone Repair Shop — Home"
           >
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,var(--color-orange)_0%,var(--color-orange-deep)_100%)] text-xs font-black tracking-[0.12em] text-white shadow-[0_12px_24px_rgba(200,90,0,0.24)]">
-              PC
+            <span className="inline-flex h-11 w-11 items-center justify-center overflow-hidden rounded-[18px] border border-white/12 bg-white/92 p-2 shadow-[0_12px_24px_rgba(0,0,0,0.14)]">
+              <img src="/media/logo.svg" alt="" className="h-full w-full object-contain" />
             </span>
             <span className="min-w-0 flex flex-col">
               <span className="truncate text-sm font-bold text-white sm:text-base">
-                PC &amp; Mobile Repair
+                PC &amp; Mobile Phone Repair Shop
               </span>
               <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-[var(--color-orange-soft)] sm:text-xs">
-                65 Sheen Lane
+                East Sheen · 65 Sheen Lane
+              </span>
+              <span className="hidden text-[10px] font-medium text-white/44 sm:block">
+                Walk-in phone, laptop, and console repairs
               </span>
             </span>
           </Link>

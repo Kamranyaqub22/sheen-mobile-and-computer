@@ -9,28 +9,53 @@ function repair(id, name, price, turnaround, warranty, notes) {
   }
 }
 
-function model(id, slug, name, summary, turnaround, repairs) {
+const CATEGORY_MEDIA = {
+  phones: {
+    imageUrl: '/media/phone-repair.png',
+    imageAlt: 'Technician repairing a smartphone on a workbench',
+  },
+  'laptops-macbooks': {
+    imageUrl: '/media/laptop-repair.png',
+    imageAlt: 'Technician repairing a laptop motherboard in the workshop',
+  },
+  tablets: {
+    imageUrl: '/media/tv-repair.png',
+    imageAlt: 'Bench setup used for tablet and screen diagnostics',
+  },
+  'game-consoles': {
+    imageUrl: '/media/gaming-repair.png',
+    imageAlt: 'Repair bench set up for gaming console diagnostics',
+  },
+}
+
+function model(id, slug, name, summary, turnaround, repairs, media = {}) {
   return {
     id,
     slug,
     name,
     summary,
     turnaround,
+    imageUrl: media.imageUrl || '',
+    imageAlt: media.imageAlt || `${name} repair image`,
     repairs,
   }
 }
 
-function brand(id, slug, name, summary, models) {
+function brand(id, slug, name, summary, models, media = {}) {
   return {
     id,
     slug,
     name,
     summary,
+    logoUrl: media.logoUrl || '',
+    logoAlt: media.logoAlt || `${name} logo`,
     models,
   }
 }
 
 function category(id, slug, name, summary, heroTitle, heroBody, accent, brands) {
+  const categoryMedia = CATEGORY_MEDIA[slug] || {}
+
   return {
     id,
     slug,
@@ -39,7 +64,16 @@ function category(id, slug, name, summary, heroTitle, heroBody, accent, brands) 
     heroTitle,
     heroBody,
     accent,
-    brands,
+    imageUrl: categoryMedia.imageUrl || '',
+    imageAlt: categoryMedia.imageAlt || `${name} repair image`,
+    brands: brands.map((brandItem) => ({
+      ...brandItem,
+      models: brandItem.models.map((modelItem) => ({
+        ...modelItem,
+        imageUrl: modelItem.imageUrl || categoryMedia.imageUrl || '',
+        imageAlt: modelItem.imageAlt || `${modelItem.name} repair image`,
+      })),
+    })),
   }
 }
 

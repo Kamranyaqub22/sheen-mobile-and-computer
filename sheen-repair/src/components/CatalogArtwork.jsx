@@ -275,6 +275,32 @@ export function BrandBadge({ brand, category, compact = false, iconOnly = false,
   const categorySlug = category?.slug || ''
   const theme = getBrandTheme(brand.slug, categorySlug)
   const sizeClasses = compact ? 'gap-2 px-3 py-2 text-xs' : 'gap-3 px-4 py-2.5 text-sm'
+  const hasLogo = Boolean(brand.logoUrl)
+
+  if (hasLogo) {
+    return (
+      <div
+        className={`catalog-badge inline-flex items-center rounded-full border bg-white/94 ${sizeClasses} ${className}`}
+        style={{
+          borderColor: 'rgba(28,27,26,0.08)',
+          color: 'var(--color-ink)',
+        }}
+      >
+        <span
+          className={`inline-flex items-center justify-center overflow-hidden rounded-full bg-white ${compact ? 'h-7 w-7 p-1.5' : 'h-8 w-8 p-1.5'}`}
+          style={{ boxShadow: '0 8px 18px rgba(17, 24, 39, 0.1)' }}
+        >
+          <img
+            src={brand.logoUrl}
+            alt={brand.logoAlt || `${brand.name} logo`}
+            className="h-full w-full object-contain"
+            loading="lazy"
+          />
+        </span>
+        {!iconOnly ? <span className="font-semibold">{brand.name}</span> : null}
+      </div>
+    )
+  }
 
   return (
     <div
@@ -303,6 +329,33 @@ export function ProductArtwork({ category, brand, model, className = '', showLab
   const categoryTheme = getCategoryTheme(categorySlug)
   const brandTheme = getBrandTheme(brandSlug, categorySlug)
   const variant = getDeviceVariant(categorySlug, brandSlug, modelSlug)
+  const imageUrl = model?.imageUrl || category?.imageUrl || ''
+  const imageAlt = model?.imageAlt || category?.imageAlt || `${model?.name || category?.name || 'Device'} repair image`
+
+  if (imageUrl) {
+    return (
+      <div className={`visual-frame relative isolate min-h-[13rem] overflow-hidden bg-[var(--color-navy-dark)] ${className}`}>
+        <img
+          src={imageUrl}
+          alt={imageAlt}
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,16,25,0.06)_0%,rgba(10,16,25,0.32)_38%,rgba(10,16,25,0.76)_100%)]" />
+        <div className="absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(255,255,255,0.2)_0%,rgba(255,255,255,0)_100%)] opacity-70" />
+        {showBadge && brand ? <BrandBadge brand={brand} category={category} iconOnly compact className="absolute right-4 top-4 z-[1]" /> : null}
+        <div className="absolute left-4 top-4 z-[1] rounded-full border border-white/20 bg-black/20 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/80 backdrop-blur-sm">
+          {brand?.name || category?.name}
+        </div>
+        {showLabel ? (
+          <div className="absolute inset-x-4 bottom-4 z-[1] rounded-[22px] border border-white/14 bg-black/28 px-4 py-4 text-white shadow-[0_18px_40px_rgba(0,0,0,0.18)] backdrop-blur-sm">
+            <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-white/65">{category?.name || 'Repair service'}</div>
+            <div className="mt-2 text-base font-bold leading-tight">{model?.name || category?.heroTitle || category?.name}</div>
+          </div>
+        ) : null}
+      </div>
+    )
+  }
 
   return (
     <div

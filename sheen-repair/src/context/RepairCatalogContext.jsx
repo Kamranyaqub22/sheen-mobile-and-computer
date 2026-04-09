@@ -4,11 +4,19 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import { seedCatalog } from '../data/repairCatalog'
 import { uniqueSlug } from '../utils/slugify'
 import { isSupabaseConfigured, supabase } from '../lib/supabaseClient'
+import {
+  applyMediaOverrides,
+  clearEntityMedia,
+  createEmptyMediaLibrary,
+  normalizeMediaLibrary,
+  setEntityMedia,
+} from '../utils/mediaLibrary'
 
 const RepairCatalogContext = createContext(null)
 
 const CATALOG_STORAGE_KEY = 'sheen-repair.catalog.v1'
 const BOOKINGS_STORAGE_KEY = 'sheen-repair.bookings.v1'
+const MEDIA_STORAGE_KEY = 'sheen-repair.media.v1'
 const isTestMode = import.meta.env.MODE === 'test'
 const useRemoteCatalog = Boolean(supabase) && !isTestMode
 
@@ -323,8 +331,9 @@ function buildRemoteRepairInsert(modelId, values, position, existingRepairs) {
 }
 
 export function RepairCatalogProvider({ children }) {
-  const [catalog, setCatalog] = useState(() => (useRemoteCatalog ? [] : readStorage(CATALOG_STORAGE_KEY, seedCatalog)))
+  const [catalogData, setCatalogData] = useState(() => (useRemoteCatalog ? [] : readStorage(CATALOG_STORAGE_KEY, seedCatalog)))
   const [bookings, setBookings] = useState(() => (useRemoteCatalog ? [] : readStorage(BOOKINGS_STORAGE_KEY, [])))
+  const [mediaLibrary, setMediaLibrary] = useState(() => normalizeMediaLibrary(readStorage(MEDIA_STORAGE_KEY, createEmptyMediaLibrary())))
   const [session, setSession] = useState(null)
   const [isAdmin, setIsAdmin] = useState(false)
   const [authReady, setAuthReady] = useState(!useRemoteCatalog)
@@ -332,14 +341,15 @@ export function RepairCatalogProvider({ children }) {
   const [isLoadingBookings, setIsLoadingBookings] = useState(false)
   const [isSeedFallback, setIsSeedFallback] = useState(false)
   const [syncError, setSyncError] = useState('')
+  const catalog = applyMediaOverrides(catalogData, mediaLibrary)
 
   useEffect(() => {
     if (useRemoteCatalog) {
       return
     }
 
-    writeStorage(CATALOG_STORAGE_KEY, catalog)
-  }, [catalog])
+    writeStorage(CATALOG_STORAGE_KEY, catalogData)
+  }, [catalogData])
 
   useEffect(() => {
     if (useRemoteCatalog) {
@@ -348,6 +358,10 @@ export function RepairCatalogProvider({ children }) {
 
     writeStorage(BOOKINGS_STORAGE_KEY, bookings)
   }, [bookings])
+
+  useEffect(() => {
+    writeStorage(MEDIA_STORAGE_KEY, mediaLibrary)
+  }, [mediaLibrary])
 
   useEffect(() => {
     if (!useRemoteCatalog) {
@@ -378,7 +392,7 @@ export function RepairCatalogProvider({ children }) {
           return
         }
 
-        setCatalog(remoteCatalog.length ? remoteCatalog : seedCatalog)
+        setCatalogData(remoteCatalog.length ? remoteCatalog : seedCatalog)
         setIsSeedFallback(remoteCatalog.length === 0)
         setSyncError('')
 
@@ -409,7 +423,7 @@ export function RepairCatalogProvider({ children }) {
         }
       } catch (error) {
         if (!cancelled) {
-          setCatalog(seedCatalog)
+          setCatalogData(seedCatalog)
           setIsSeedFallback(true)
           setSyncError(getErrorMessage(error))
         }
@@ -485,13 +499,13 @@ export function RepairCatalogProvider({ children }) {
     try {
       const remoteCatalog = await loadRemoteCatalog()
 
-      setCatalog(remoteCatalog.length ? remoteCatalog : seedCatalog)
+      setCatalogData(remoteCatalog.length ? remoteCatalog : seedCatalog)
       setIsSeedFallback(remoteCatalog.length === 0)
       setSyncError('')
 
       return remoteCatalog.length ? remoteCatalog : seedCatalog
     } catch (error) {
-      setCatalog(seedCatalog)
+      setCatalogData(seedCatalog)
       setIsSeedFallback(true)
       setSyncError(getErrorMessage(error))
       return seedCatalog
@@ -540,7 +554,7 @@ export function RepairCatalogProvider({ children }) {
 
   const addCategory = async (values) => {
     if (!useRemoteCatalog) {
-      setCatalog((currentCatalog) => [
+      setCatalogData((currentCatalog) => [
         ...currentCatalog,
         createCategoryPayload(currentCatalog, values),
       ])
@@ -563,7 +577,7 @@ export function RepairCatalogProvider({ children }) {
 
   const updateCategory = async (categoryId, values) => {
     if (!useRemoteCatalog) {
-      setCatalog((currentCatalog) =>
+      setCatalogData((currentCatalog) =>
         currentCatalog.map((category) => {
           if (category.id !== categoryId) {
             return category
@@ -613,7 +627,7 @@ export function RepairCatalogProvider({ children }) {
 
   const deleteCategory = async (categoryId) => {
     if (!useRemoteCatalog) {
-      setCatalog((currentCatalog) => currentCatalog.filter((category) => category.id !== categoryId))
+      setCatalogData((currentCatalog) => currentCatalog.filter((category) => category.id !== categoryId))
       return true
     }
 
@@ -631,7 +645,7 @@ export function RepairCatalogProvider({ children }) {
 
   const addBrand = async (categoryId, values) => {
     if (!useRemoteCatalog) {
-      setCatalog((currentCatalog) =>
+      setCatalogData((currentCatalog) =>
         currentCatalog.map((category) => {
           if (category.id !== categoryId) {
             return category
@@ -665,7 +679,7 @@ export function RepairCatalogProvider({ children }) {
 
   const updateBrand = async (categoryId, brandId, values) => {
     if (!useRemoteCatalog) {
-      setCatalog((currentCatalog) =>
+      setCatalogData((currentCatalog) =>
         currentCatalog.map((category) => {
           if (category.id !== categoryId) {
             return category
@@ -719,7 +733,7 @@ export function RepairCatalogProvider({ children }) {
 
   const deleteBrand = async (categoryId, brandId) => {
     if (!useRemoteCatalog) {
-      setCatalog((currentCatalog) =>
+      setCatalogData((currentCatalog) =>
         currentCatalog.map((category) => {
           if (category.id !== categoryId) {
             return category
@@ -748,7 +762,7 @@ export function RepairCatalogProvider({ children }) {
 
   const addModel = async (categoryId, brandId, values) => {
     if (!useRemoteCatalog) {
-      setCatalog((currentCatalog) =>
+      setCatalogData((currentCatalog) =>
         currentCatalog.map((category) => {
           if (category.id !== categoryId) {
             return category
@@ -791,7 +805,7 @@ export function RepairCatalogProvider({ children }) {
 
   const updateModel = async (categoryId, brandId, modelId, values) => {
     if (!useRemoteCatalog) {
-      setCatalog((currentCatalog) =>
+      setCatalogData((currentCatalog) =>
         currentCatalog.map((category) => {
           if (category.id !== categoryId) {
             return category
@@ -856,7 +870,7 @@ export function RepairCatalogProvider({ children }) {
 
   const deleteModel = async (categoryId, brandId, modelId) => {
     if (!useRemoteCatalog) {
-      setCatalog((currentCatalog) =>
+      setCatalogData((currentCatalog) =>
         currentCatalog.map((category) => {
           if (category.id !== categoryId) {
             return category
@@ -894,7 +908,7 @@ export function RepairCatalogProvider({ children }) {
 
   const addRepair = async (categoryId, brandId, modelId, values) => {
     if (!useRemoteCatalog) {
-      setCatalog((currentCatalog) =>
+      setCatalogData((currentCatalog) =>
         currentCatalog.map((category) => {
           if (category.id !== categoryId) {
             return category
@@ -949,7 +963,7 @@ export function RepairCatalogProvider({ children }) {
 
   const updateRepair = async (categoryId, brandId, modelId, repairId, values) => {
     if (!useRemoteCatalog) {
-      setCatalog((currentCatalog) =>
+      setCatalogData((currentCatalog) =>
         currentCatalog.map((category) => {
           if (category.id !== categoryId) {
             return category
@@ -1025,7 +1039,7 @@ export function RepairCatalogProvider({ children }) {
 
   const deleteRepair = async (categoryId, brandId, modelId, repairId) => {
     if (!useRemoteCatalog) {
-      setCatalog((currentCatalog) =>
+      setCatalogData((currentCatalog) =>
         currentCatalog.map((category) => {
           if (category.id !== categoryId) {
             return category
@@ -1068,6 +1082,36 @@ export function RepairCatalogProvider({ children }) {
       },
       refreshCatalog,
     )
+  }
+
+  const saveCategoryMedia = async (categoryId, values) => {
+    setMediaLibrary((currentLibrary) => setEntityMedia(currentLibrary, 'categories', categoryId, values))
+    return true
+  }
+
+  const saveBrandMedia = async (brandId, values) => {
+    setMediaLibrary((currentLibrary) => setEntityMedia(currentLibrary, 'brands', brandId, values))
+    return true
+  }
+
+  const saveModelMedia = async (modelId, values) => {
+    setMediaLibrary((currentLibrary) => setEntityMedia(currentLibrary, 'models', modelId, values))
+    return true
+  }
+
+  const clearCategoryMedia = async (categoryId) => {
+    setMediaLibrary((currentLibrary) => clearEntityMedia(currentLibrary, 'categories', categoryId))
+    return true
+  }
+
+  const clearBrandMedia = async (brandId) => {
+    setMediaLibrary((currentLibrary) => clearEntityMedia(currentLibrary, 'brands', brandId))
+    return true
+  }
+
+  const clearModelMedia = async (modelId) => {
+    setMediaLibrary((currentLibrary) => clearEntityMedia(currentLibrary, 'models', modelId))
+    return true
   }
 
   const createBooking = async (values) => {
@@ -1166,7 +1210,7 @@ export function RepairCatalogProvider({ children }) {
 
   const importSeedCatalog = async () => {
     if (!useRemoteCatalog) {
-      setCatalog(seedCatalog)
+      setCatalogData(seedCatalog)
       return true
     }
 
@@ -1224,7 +1268,7 @@ export function RepairCatalogProvider({ children }) {
 
   const resetCatalog = async () => {
     if (!useRemoteCatalog) {
-      setCatalog(seedCatalog)
+      setCatalogData(seedCatalog)
       return true
     }
 
@@ -1313,7 +1357,10 @@ export function RepairCatalogProvider({ children }) {
     authReady,
     bookings,
     catalog,
+    clearBrandMedia,
     clearBookings,
+    clearCategoryMedia,
+    clearModelMedia,
     createBooking,
     dataSource: useRemoteCatalog ? 'supabase' : 'local',
     deleteBooking,
@@ -1326,12 +1373,16 @@ export function RepairCatalogProvider({ children }) {
     isConfigured: isSupabaseConfigured,
     isLoadingBookings,
     isLoadingCatalog,
+    mediaLibrary,
     isRemote: useRemoteCatalog,
     isSeedFallback,
     refreshCatalog,
     refreshBookings,
     requestAdminMagicLink,
     resetCatalog,
+    saveBrandMedia,
+    saveCategoryMedia,
+    saveModelMedia,
     session,
     signOutAdmin,
     syncError,
