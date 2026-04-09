@@ -20,12 +20,14 @@ export default function ContactForm({ light = false }) {
     setSubmitted(true)
   }
 
-  const labelClass = `block text-sm font-medium mb-1.5 ${light ? 'text-white/80' : 'text-gray-700'}`
+  const labelClass = `block text-sm font-medium mb-1.5 ${light ? 'text-white/78' : 'text-[var(--color-muted)]'}`
+  const inputClass = `form-input ${light ? 'form-input-light' : ''}`
+  const requiredColor = light ? 'var(--color-orange-soft)' : 'var(--color-orange)'
 
   if (submitted) {
     return (
       <div
-        className="rounded border p-6 text-center"
+        className="rounded-3xl border p-6 text-center"
         style={{
           backgroundColor: light ? 'rgba(255,255,255,0.08)' : '#f0fdf4',
           borderColor: light ? 'rgba(255,255,255,0.2)' : '#86efac',
@@ -48,7 +50,7 @@ export default function ContactForm({ light = false }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="name" className={labelClass}>
-            Your name <span style={{ color: '#c0392b' }}>*</span>
+            Your name <span style={{ color: requiredColor }}>*</span>
           </label>
           <input
             id="name"
@@ -56,8 +58,7 @@ export default function ContactForm({ light = false }) {
             type="text"
             required
             autoComplete="name"
-            className="form-input"
-            style={light ? { backgroundColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.25)', color: '#fff' } : {}}
+            className={inputClass}
             placeholder="e.g. John Smith"
             value={form.name}
             onChange={handleChange}
@@ -70,8 +71,7 @@ export default function ContactForm({ light = false }) {
             name="phone"
             type="tel"
             autoComplete="tel"
-            className="form-input"
-            style={light ? { backgroundColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.25)', color: '#fff' } : {}}
+            className={inputClass}
             placeholder="e.g. 07700 900000"
             value={form.phone}
             onChange={handleChange}
@@ -81,7 +81,7 @@ export default function ContactForm({ light = false }) {
 
       <div>
         <label htmlFor="email" className={labelClass}>
-          Email address <span style={{ color: '#c0392b' }}>*</span>
+          Email address <span style={{ color: requiredColor }}>*</span>
         </label>
         <input
           id="email"
@@ -89,8 +89,7 @@ export default function ContactForm({ light = false }) {
           type="email"
           required
           autoComplete="email"
-          className="form-input"
-          style={light ? { backgroundColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.25)', color: '#fff' } : {}}
+          className={inputClass}
           placeholder="your@email.com"
           value={form.email}
           onChange={handleChange}
@@ -103,8 +102,7 @@ export default function ContactForm({ light = false }) {
           id="device"
           name="device"
           type="text"
-          className="form-input"
-          style={light ? { backgroundColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.25)', color: '#fff' } : {}}
+          className={inputClass}
           placeholder="e.g. iPhone 14 — cracked screen"
           value={form.device}
           onChange={handleChange}
@@ -117,8 +115,7 @@ export default function ContactForm({ light = false }) {
           id="message"
           name="message"
           rows={4}
-          className="form-input resize-y"
-          style={light ? { backgroundColor: 'rgba(255,255,255,0.08)', borderColor: 'rgba(255,255,255,0.25)', color: '#fff' } : {}}
+          className={`${inputClass} resize-y`}
           placeholder="Tell us more about the problem, or ask a question..."
           value={form.message}
           onChange={handleChange}

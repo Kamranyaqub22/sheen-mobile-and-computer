@@ -19,21 +19,43 @@ export default function Accessories() {
         <link rel="canonical" href="https://sheenrepair.co.uk/accessories-buy-sell" />
       </Helmet>
 
-      {/* Header */}
-      <section style={{ backgroundColor: '#1c2d4a' }} className="py-12">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex items-center gap-2 text-sm mb-4" style={{ color: 'rgba(255,255,255,0.55)' }}>
-            <Link to="/" className="hover:text-white transition-colors">Home</Link>
-            <span>/</span>
-            <span className="text-white/80">Accessories / Buy &amp; Sell</span>
+      <section className="page-hero">
+        <div className="page-hero-shell">
+          <div className="max-w-6xl mx-auto px-4 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.82fr)] items-end">
+            <div>
+              <div className="mb-4 flex items-center gap-2 text-sm text-white/55">
+                <Link to="/" className="transition-colors hover:text-white">Home</Link>
+                <span>/</span>
+                <span className="text-white/82">Accessories / Buy &amp; Sell</span>
+              </div>
+              <span className="section-label text-[var(--color-orange-soft)]">Extras, trade-ins, and practical stock</span>
+              <h1 className="max-w-2xl text-4xl font-black tracking-tight text-white md:text-5xl">
+                Accessories in stock, plus used and faulty device trade-ins.
+              </h1>
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/74 md:text-lg">
+                Visit the shop for everyday accessories, or bring in a used phone or laptop if you want to sell, trade in, or ask what it&apos;s worth.
+              </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <a href="tel:02088787266" className="btn-primary">Call About Stock</a>
+                <Link to="/book-repair" className="btn-outline-white">Book Repair</Link>
+              </div>
+            </div>
+
+            <div className="panel-dark p-6 md:p-7">
+              <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+                {[
+                  ['Accessories', 'Cases, chargers, protectors, audio, and storage accessories in shop.'],
+                  ['Buy & Sell', 'Working and faulty phones and laptops assessed in person.'],
+                  ['Walk in', 'No appointment needed if you want a quick trade-in discussion.'],
+                ].map(([title, body]) => (
+                  <div key={title} className="rounded-2xl border border-white/10 bg-white/6 px-4 py-4">
+                    <div className="text-sm font-semibold text-white">{title}</div>
+                    <p className="mt-2 text-sm leading-relaxed text-white/66">{body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-3">
-            Accessories, Buy &amp; Sell
-          </h1>
-          <p className="max-w-2xl text-lg" style={{ color: 'rgba(255,255,255,0.75)' }}>
-            Accessories in stock at 65 Sheen Lane. We also buy and sell used phones and
-            laptops — working and faulty.
-          </p>
         </div>
       </section>
 
@@ -61,7 +83,7 @@ export default function Accessories() {
       <section className="section-pad" style={{ backgroundColor: '#f8f6f2' }}>
         <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8">
           {/* Buy */}
-          <div className="rounded-lg p-6" style={{ backgroundColor: '#fff', border: '1px solid #e5e1d8' }}>
+          <div className="panel-card p-6">
             <h2 className="text-xl font-bold mb-3" style={{ color: '#1c2d4a' }}>Buy a second-hand device</h2>
             <p className="text-sm text-gray-500 mb-4 leading-relaxed">
               We sell refurbished phones and laptops in-store. Stock changes regularly —
@@ -79,7 +101,7 @@ export default function Accessories() {
           </div>
 
           {/* Sell */}
-          <div className="rounded-lg p-6" style={{ backgroundColor: '#fff', border: '1px solid #e5e1d8' }}>
+          <div className="panel-card p-6">
             <h2 className="text-xl font-bold mb-3" style={{ color: '#1c2d4a' }}>Sell or trade in your device</h2>
             <p className="text-sm text-gray-500 mb-4 leading-relaxed">
               Got an old phone or laptop sitting in a drawer? We buy used devices for cash — working
@@ -103,23 +125,27 @@ export default function Accessories() {
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-xl font-bold mb-4" style={{ color: '#1c2d4a' }}>Also looking for…</h2>
           <div className="flex flex-wrap gap-3">
-            <Link to="/phone-repairs" className="btn-secondary text-sm">Phone Repairs</Link>
-            <Link to="/laptop-macbook-repairs" className="btn-secondary text-sm">Laptop &amp; MacBook Repairs</Link>
+            <Link to="/repairs/phones" className="btn-secondary text-sm">Phone Repairs</Link>
+            <Link to="/repairs/laptops-macbooks" className="btn-secondary text-sm">Laptop &amp; MacBook Repairs</Link>
             <Link to="/contact" className="btn-secondary text-sm">Contact Us</Link>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section style={{ backgroundColor: '#c0392b' }} className="py-12">
-        <div className="max-w-3xl mx-auto px-4 text-center">
+      <section className="accent-banner section-pad-tight">
+        <div className="relative max-w-3xl mx-auto px-4 text-center">
           <h2 className="text-2xl font-bold text-white mb-3">Come in and see what we have</h2>
           <p className="text-white/80 mb-6">
             65 Sheen Lane, East Sheen SW14. Open Monday–Friday 9am–6:30pm, Saturday 9:30am–5:30pm.
           </p>
-          <a href="tel:02088787266" className="btn-outline-white">
-            Call 020 8878 7266
-          </a>
+          <div className="flex flex-wrap justify-center gap-3">
+            <a href="tel:02088787266" className="btn-outline-white">
+              Call 020 8878 7266
+            </a>
+            <Link to="/book-repair" className="btn-outline-white">
+              Book Repair
+            </Link>
+          </div>
         </div>
       </section>
     </>

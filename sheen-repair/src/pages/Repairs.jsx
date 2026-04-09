@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { useRepairCatalog } from '../context/RepairCatalogContext'
@@ -32,8 +33,109 @@ function getLowestPrice(category) {
   return `From ${money.format(Math.min(...prices))}`
 }
 
+function getLowestModelPrice(model) {
+  const prices = model.repairs.map((repair) => repair.price).filter(Boolean)
+
+  if (!prices.length) {
+    return 'Quote on request'
+  }
+
+  return `From ${money.format(Math.min(...prices))}`
+}
+
+function buildSearchResults(catalog, query) {
+  const normalizedQuery = query.trim().toLowerCase()
+
+  if (!normalizedQuery) {
+    return []
+  }
+
+  const results = []
+
+  for (const category of catalog) {
+    if (
+      category.name.toLowerCase().includes(normalizedQuery)
+      || category.summary.toLowerCase().includes(normalizedQuery)
+      || category.heroTitle.toLowerCase().includes(normalizedQuery)
+    ) {
+      results.push({
+        id: `category-${category.id}`,
+        kind: 'Category',
+        title: category.name,
+        meta: `${category.brands.length} brands · ${getLowestPrice(category)}`,
+        path: `/repairs/${category.slug}`,
+        action: 'Browse',
+      })
+    }
+
+    for (const brand of category.brands) {
+      if (
+        brand.name.toLowerCase().includes(normalizedQuery)
+        || brand.summary.toLowerCase().includes(normalizedQuery)
+      ) {
+        results.push({
+          id: `brand-${brand.id}`,
+          kind: 'Brand',
+          title: brand.name,
+          meta: `${category.name} · ${brand.models.length} models`,
+          path: `/repairs/${category.slug}/${brand.slug}`,
+          action: 'Open brand',
+        })
+      }
+
+      for (const model of brand.models) {
+        if (
+          model.name.toLowerCase().includes(normalizedQuery)
+          || model.summary.toLowerCase().includes(normalizedQuery)
+        ) {
+          results.push({
+            id: `model-${model.id}`,
+            kind: 'Model',
+            title: model.name,
+            meta: `${brand.name} · ${category.name} · ${getLowestModelPrice(model)}`,
+            path: `/repairs/${category.slug}/${brand.slug}/${model.slug}`,
+            action: 'View repairs',
+          })
+        }
+
+        for (const repair of model.repairs) {
+          if (
+            repair.name.toLowerCase().includes(normalizedQuery)
+            || repair.notes.toLowerCase().includes(normalizedQuery)
+          ) {
+            results.push({
+              id: `repair-${repair.id}`,
+              kind: 'Repair',
+              title: repair.name,
+              meta: `${brand.name} ${model.name} · ${money.format(repair.price)} · ${repair.turnaround}`,
+              path: `/book-repair?category=${category.slug}&brand=${brand.slug}&model=${model.slug}&repair=${encodeURIComponent(repair.name)}`,
+              action: 'Book now',
+            })
+          }
+        }
+      }
+    }
+  }
+
+  return results.slice(0, 8)
+}
+
 export default function Repairs() {
   const { catalog, isLoadingCatalog } = useRepairCatalog()
+  const [searchQuery, setSearchQuery] = useState('')
+  const searchResults = buildSearchResults(catalog, searchQuery)
+  const totalBrands = catalog.reduce((total, category) => total + category.brands.length, 0)
+  const totalModels = catalog.reduce(
+    (total, category) => total + category.brands.reduce((brandTotal, brand) => brandTotal + brand.models.length, 0),
+    0,
+  )
+  const totalRepairs = catalog.reduce(
+    (total, category) => total + category.brands.reduce(
+      (brandTotal, brand) => brandTotal + brand.models.reduce((modelTotal, model) => modelTotal + model.repairs.length, 0),
+      0,
+    ),
+    0,
+  )
 
   return (
     <>
@@ -46,72 +148,140 @@ export default function Repairs() {
         <link rel="canonical" href="https://sheenrepair.co.uk/repairs" />
       </Helmet>
 
-      <section className="relative overflow-hidden section-pad pt-16 md:pt-24 bg-[radial-gradient(circle_at_top_left,_rgba(255,171,67,0.18),_transparent_35%),linear-gradient(135deg,_#1c1612_0%,_#2b2018_50%,_#100d0b_100%)]">
-        <div className="max-w-6xl mx-auto px-4 grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
-          <div>
-            <span className="section-label text-[var(--color-orange-soft)]">Structured repair journey</span>
-            <h1 className="text-4xl md:text-6xl font-black tracking-tight text-white max-w-3xl">
-              Pick the device category, then the brand, model, and exact repair.
-            </h1>
-            <p className="mt-5 max-w-2xl text-base md:text-lg leading-relaxed text-white/74">
-              This flow gives you cleaner pricing, faster quoting, and a professional booking journey.
-              It also creates the right foundation for an admin area where new brands, models, and repair
-              services can be added without touching code.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/book-repair" className="btn-primary text-base px-6 py-3">
-                Book Repair Service
-              </Link>
-              <a href="tel:02088787266" className="btn-outline-white text-base px-6 py-3">
-                Call 020 8878 7266
-              </a>
-            </div>
-          </div>
+      <section className="page-hero">
+        <div className="page-hero-shell">
+          <div className="max-w-6xl mx-auto px-4 grid gap-10 lg:grid-cols-[minmax(0,1.02fr)_minmax(20rem,0.98fr)] items-start">
+            <div>
+              <span className="section-label text-[var(--color-orange-soft)]">Structured repair journey</span>
+              <h1 className="max-w-3xl text-4xl font-black tracking-tight text-white md:text-6xl">
+                Pick the device category, then the brand, model, and exact repair.
+              </h1>
+              <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/74 md:text-lg">
+                This flow gives you cleaner pricing, faster quoting, and a professional booking journey.
+                It also creates the right foundation for an admin area where new brands, models, and repair
+                services can be added without touching code.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link to="/book-repair" className="btn-primary px-6 py-3 text-base">
+                  Book Repair Service
+                </Link>
+                <a href="tel:02088787266" className="btn-outline-white px-6 py-3 text-base">
+                  Call 020 8878 7266
+                </a>
+              </div>
+              <div className="mt-6 flex flex-wrap gap-2 text-sm text-white/78">
+                <span className="stat-pill border-white/12 bg-white/6 text-white/88">{catalog.length} categories</span>
+                <span className="stat-pill border-white/12 bg-white/6 text-white/88">{totalBrands} brands</span>
+                <span className="stat-pill border-white/12 bg-white/6 text-white/88">{totalModels} models</span>
+                <span className="stat-pill border-white/12 bg-white/6 text-white/88">{totalRepairs} repairs</span>
+              </div>
 
-          <div className="panel-dark p-6 md:p-8">
-            <div className="grid sm:grid-cols-2 gap-4">
-              {isLoadingCatalog && !catalog.length ? (
-                <div className="rounded-3xl border border-white/10 bg-white/5 p-5 text-white/72 sm:col-span-2">
-                  Loading live repair categories...
+              <div className="panel-dark mt-8 max-w-2xl p-5 md:p-6">
+                <div className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-orange-soft)]">
+                  Global repair search
                 </div>
-              ) : catalog.map((category) => {
-                const counts = getCounts(category)
-                const featuredBrands = category.brands.slice(0, 4)
+                <label className="mt-3 block text-sm font-semibold text-white" htmlFor="repair-global-search">
+                  Search any brand, model, or repair
+                </label>
+                <input
+                  id="repair-global-search"
+                  type="search"
+                  className="form-input form-input-light mt-3"
+                  placeholder="e.g. iPhone 14 battery, MacBook Air screen, PS5 HDMI"
+                  value={searchQuery}
+                  onChange={(event) => setSearchQuery(event.target.value)}
+                />
 
-                return (
-                  <Link
-                    key={category.id}
-                    to={`/repairs/${category.slug}`}
-                    className="rounded-3xl border border-white/10 bg-white/5 p-5 transition-transform duration-200 hover:-translate-y-1 hover:bg-white/8"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="min-w-0 flex-1">
-                        <div className="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-orange-soft)]">
-                          {category.name}
-                        </div>
-                        <div className="mt-3 text-2xl font-extrabold text-white">
-                          {counts.modelCount} models
-                        </div>
-                        <p className="mt-2 text-sm leading-relaxed text-white/65">{category.summary}</p>
+                {searchQuery.trim() ? (
+                  <div className="mt-4 space-y-3">
+                    {searchResults.length ? (
+                      searchResults.map((result) => (
+                        <Link
+                          key={result.id}
+                          to={result.path}
+                          className="block rounded-2xl border border-white/10 bg-white/6 px-4 py-3 transition-colors hover:bg-white/10"
+                        >
+                          <div className="flex items-start justify-between gap-3">
+                            <div className="min-w-0 flex-1">
+                              <div className="text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-[var(--color-orange-soft)]">
+                                {result.kind}
+                              </div>
+                              <div className="mt-1 truncate text-sm font-semibold text-white">{result.title}</div>
+                              <div className="mt-1 text-xs leading-relaxed text-white/62">{result.meta}</div>
+                            </div>
+                            <span className="pt-1 text-xs font-semibold text-white/74">{result.action}</span>
+                          </div>
+                        </Link>
+                      ))
+                    ) : (
+                      <div className="rounded-2xl border border-white/10 bg-white/6 px-4 py-3 text-sm text-white/68">
+                        No matching brands, models, or repairs found yet. Try a wider search term.
                       </div>
-                      <CategoryArtwork category={category} className="h-28 w-28 shrink-0" />
-                    </div>
-                    <div className="mt-5 flex flex-wrap gap-2 text-xs text-white/72">
-                      <span className="stat-pill">{counts.brandCount} brands</span>
-                      <span className="stat-pill">{counts.repairCount} repairs</span>
-                      <span className="stat-pill stat-pill-accent">{getLowestPrice(category)}</span>
-                    </div>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {featuredBrands.map((brand) => (
-                        <BrandBadge key={brand.id} brand={brand} category={category} compact />
-                      ))}
-                      {category.brands.length > featuredBrands.length ? (
-                        <span className="stat-pill text-xs text-white/72">+{category.brands.length - featuredBrands.length} more</span>
-                      ) : null}
-                    </div>
-                  </Link>
-                )
-              })}
+                    )}
+                  </div>
+                ) : (
+                  <p className="mt-3 text-sm leading-relaxed text-white/62">
+                    Search straight into the catalog instead of browsing manually when you already know the device or repair.
+                  </p>
+                )}
+              </div>
+            </div>
+
+            <div className="panel-dark p-6 md:p-8">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <div className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-orange-soft)]">
+                    Start by category
+                  </div>
+                  <h2 className="mt-2 text-2xl font-extrabold text-white">Browse the repair catalog</h2>
+                </div>
+                <span className="stat-pill border-white/12 bg-white/6 text-white/88">Live pricing paths</span>
+              </div>
+
+              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                {isLoadingCatalog && !catalog.length ? (
+                  <div className="rounded-3xl border border-white/10 bg-white/5 p-5 text-white/72 sm:col-span-2">
+                    Loading live repair categories...
+                  </div>
+                ) : catalog.map((category) => {
+                  const counts = getCounts(category)
+                  const featuredBrands = category.brands.slice(0, 4)
+
+                  return (
+                    <Link
+                      key={category.id}
+                      to={`/repairs/${category.slug}`}
+                      className="h-full rounded-3xl border border-white/10 bg-white/5 p-5 transition-transform duration-200 hover:-translate-y-1 hover:bg-white/8"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="min-w-0 flex-1">
+                          <div className="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-orange-soft)]">
+                            {category.name}
+                          </div>
+                          <div className="mt-3 text-2xl font-extrabold text-white">
+                            {counts.modelCount} models
+                          </div>
+                          <p className="mt-2 text-sm leading-relaxed text-white/65">{category.summary}</p>
+                        </div>
+                        <CategoryArtwork category={category} className="h-28 w-28 shrink-0" />
+                      </div>
+                      <div className="mt-5 flex flex-wrap gap-2 text-xs text-white/72">
+                        <span className="stat-pill">{counts.brandCount} brands</span>
+                        <span className="stat-pill">{counts.repairCount} repairs</span>
+                        <span className="stat-pill stat-pill-accent">{getLowestPrice(category)}</span>
+                      </div>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {featuredBrands.map((brand) => (
+                          <BrandBadge key={brand.id} brand={brand} category={category} compact />
+                        ))}
+                        {category.brands.length > featuredBrands.length ? (
+                          <span className="stat-pill text-xs text-white/72">+{category.brands.length - featuredBrands.length} more</span>
+                        ) : null}
+                      </div>
+                    </Link>
+                  )
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -136,7 +306,7 @@ export default function Repairs() {
               const firstBrands = category.brands.slice(0, 5)
 
               return (
-                <div key={category.id} className="panel-card p-6 md:p-7">
+                <div key={category.id} className="panel-card h-full p-6 md:p-7">
                   <div className="flex flex-wrap items-start justify-between gap-4">
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-clay)]">

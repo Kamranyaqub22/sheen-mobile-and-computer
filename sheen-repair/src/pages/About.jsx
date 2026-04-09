@@ -10,18 +10,41 @@ export default function About() {
         <link rel="canonical" href="https://sheenrepair.co.uk/about" />
       </Helmet>
 
-      {/* Header */}
-      <section style={{ backgroundColor: '#1c2d4a' }} className="py-12">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex items-center gap-2 text-sm mb-4" style={{ color: 'rgba(255,255,255,0.55)' }}>
-            <Link to="/" className="hover:text-white transition-colors">Home</Link>
-            <span>/</span>
-            <span className="text-white/80">About</span>
+      <section className="page-hero">
+        <div className="page-hero-shell">
+          <div className="max-w-6xl mx-auto px-4 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.8fr)] items-end">
+            <div>
+              <div className="mb-4 flex items-center gap-2 text-sm text-white/55">
+                <Link to="/" className="transition-colors hover:text-white">Home</Link>
+                <span>/</span>
+                <span className="text-white/82">About</span>
+              </div>
+              <span className="section-label text-[var(--color-orange-soft)]">Independent local repair shop</span>
+              <h1 className="max-w-2xl text-4xl font-black tracking-tight text-white md:text-5xl">About the shop and how we work</h1>
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/74 md:text-lg">
+                We&apos;re an East Sheen repair shop focused on clear advice, practical turnaround times, and work carried out in our own workshop rather than outsourced elsewhere.
+              </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link to="/repairs" className="btn-primary">Browse Repairs</Link>
+                <Link to="/contact" className="btn-outline-white">Contact the Shop</Link>
+              </div>
+            </div>
+
+            <div className="panel-dark p-6 md:p-7">
+              <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+                {[
+                  ['In-house workshop', 'Repairs are handled on site rather than sent away.'],
+                  ['Same-day common faults', 'Many popular phone jobs are completed the same day.'],
+                  ['Honest quoting', 'If a repair is not worth doing, we say so clearly.'],
+                ].map(([title, body]) => (
+                  <div key={title} className="rounded-2xl border border-white/10 bg-white/6 px-4 py-4">
+                    <div className="text-sm font-semibold text-white">{title}</div>
+                    <p className="mt-2 text-sm leading-relaxed text-white/66">{body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-3">About the Shop</h1>
-          <p className="max-w-2xl text-lg" style={{ color: 'rgba(255,255,255,0.75)' }}>
-            A local, independent repair shop at 65 Sheen Lane, East Sheen, London SW14.
-          </p>
         </div>
       </section>
 
@@ -52,15 +75,15 @@ export default function About() {
               </p>
             </div>
             <div className="space-y-4">
-              <div className="rounded-lg p-5" style={{ backgroundColor: '#f8f6f2', border: '1px solid #e5e1d8' }}>
+              <div className="info-tile p-5">
                 <div className="font-semibold mb-1" style={{ color: '#1c2d4a' }}>Located on Sheen Lane</div>
                 <p className="text-sm text-gray-500">65 Sheen Lane, London SW14 8AD — easy to reach from Richmond, Mortlake, Barnes and Kew.</p>
               </div>
-              <div className="rounded-lg p-5" style={{ backgroundColor: '#f8f6f2', border: '1px solid #e5e1d8' }}>
+              <div className="info-tile p-5">
                 <div className="font-semibold mb-1" style={{ color: '#1c2d4a' }}>Same-day repairs</div>
                 <p className="text-sm text-gray-500">Most phone screen and battery jobs are done same day. We keep common parts in stock so you don&apos;t have to wait.</p>
               </div>
-              <div className="rounded-lg p-5" style={{ backgroundColor: '#f8f6f2', border: '1px solid #e5e1d8' }}>
+              <div className="info-tile p-5">
                 <div className="font-semibold mb-1" style={{ color: '#1c2d4a' }}>Independent &amp; local</div>
                 <p className="text-sm text-gray-500">We&apos;re not part of a chain. When you bring your device in, you&apos;re dealing with the person actually doing the repair.</p>
               </div>
@@ -80,7 +103,7 @@ export default function About() {
               { cat: 'Tablets', items: ['iPad (all models)', 'Samsung & Android tablets', 'Amazon Fire tablets'] },
               { cat: 'Other Devices', items: ['Smart TVs', 'PlayStation & Xbox', 'Nintendo Switch', 'Desktop PCs'] },
             ].map(({ cat, items }) => (
-              <div key={cat} className="rounded p-4" style={{ backgroundColor: '#fff', border: '1px solid #e5e1d8' }}>
+              <div key={cat} className="info-tile h-full p-4">
                 <div className="font-semibold mb-2 text-sm" style={{ color: '#1c2d4a' }}>{cat}</div>
                 <ul className="text-sm text-gray-500 space-y-1">
                   {items.map((i) => <li key={i}>— {i}</li>)}
@@ -89,28 +112,22 @@ export default function About() {
             ))}
           </div>
           <div className="flex flex-wrap gap-3">
-            <Link to="/phone-repairs" className="btn-primary text-sm">Phone Repairs</Link>
-            <Link to="/laptop-macbook-repairs" className="btn-secondary text-sm">Laptop &amp; MacBook</Link>
-            <Link to="/other-repairs" className="btn-secondary text-sm">TV &amp; Other</Link>
+            <Link to="/repairs/phones" className="btn-primary text-sm">Phone Repairs</Link>
+            <Link to="/repairs/laptops-macbooks" className="btn-secondary text-sm">Laptop &amp; MacBook</Link>
+            <Link to="/repairs/game-consoles" className="btn-secondary text-sm">Console Repairs</Link>
           </div>
         </div>
       </section>
 
-      {/* Contact CTA */}
-      <section style={{ backgroundColor: '#1c2d4a' }} className="py-14">
-        <div className="max-w-3xl mx-auto px-4 text-center">
+      <section className="accent-banner section-pad-tight">
+        <div className="relative max-w-3xl mx-auto px-4 text-center">
           <h2 className="text-2xl font-bold text-white mb-3">Come and see us</h2>
-          <p className="mb-6" style={{ color: 'rgba(255,255,255,0.7)' }}>
+          <p className="mb-6 text-white/82">
             65 Sheen Lane, East Sheen, London SW14 8AD.<br />
             Monday–Friday 9am–6:30pm · Saturday 9:30am–5:30pm
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            <a href="tel:02088787266" className="btn-primary">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-              </svg>
-              020 8878 7266
-            </a>
+            <Link to="/book-repair" className="btn-outline-white">Book Repair</Link>
             <Link to="/contact" className="btn-outline-white">Send a message</Link>
           </div>
         </div>
