@@ -4,22 +4,33 @@
 @theme {
   --font-sans: 'Instrument Sans', system-ui, -apple-system, sans-serif;
   --font-display: 'Space Grotesk', 'Instrument Sans', system-ui, sans-serif;
-  --color-navy: #1f2b3d;
-  --color-navy-dark: #111827;
-  --color-navy-mid: #374151;
-  --color-accent: #ef7a1a;
-  --color-accent-hover: #cc5f08;
-  --color-orange: #ef7a1a;
-  --color-orange-deep: #c85a00;
-  --color-orange-soft: #ffd1a3;
-  --color-cream: #fbf4ec;
-  --color-warm: #fff8f1;
-  --color-warm-dark: #efe4d6;
-  --color-border: #ddcebf;
-  --color-surface: #fffaf4;
-  --color-ink: #1c1b1a;
-  --color-clay: #8a6a49;
-  --color-muted: #65594d;
+  
+  --color-navy: #151e2c;
+  --color-navy-dark: #0a0e16;
+  --color-navy-mid: #253347;
+  --color-brand: #f97316;
+  --color-brand-hover: #ea580c;
+  --color-accent: #f97316;
+  --color-accent-hover: #ea580c;
+  --color-orange: #f97316;
+  --color-orange-deep: #c2410b;
+  --color-orange-soft: #ffedd5;
+  --color-cream: #faf7f2;
+  --color-warm: #fffbfc;
+  --color-warm-dark: #eee8e0;
+  --color-border: #e2d9cd;
+  --color-surface: #ffffff;
+  --color-ink: #111827;
+  --color-clay: #7c6248;
+  --color-muted: #57534e;
+
+  /* Elevation mapping */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-premium: 0 20px 40px -8px rgba(249, 115, 22, 0.15), 0 1px 3px rgba(0,0,0,0.05);
 }
 
 *,
@@ -72,48 +83,60 @@ img {
 .btn-primary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   background: linear-gradient(135deg, var(--color-orange) 0%, var(--color-orange-deep) 100%);
   color: #ffffff;
   font-weight: 600;
-  padding: 0.75rem 1.5rem;
-  border-radius: 999px;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
   text-decoration: none;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   border: 2px solid transparent;
   cursor: pointer;
   font-size: 0.9375rem;
   white-space: nowrap;
   font-family: inherit;
-  box-shadow: 0 14px 30px rgba(200, 90, 0, 0.18);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.25);
+  transform: translateZ(0); 
 }
 .btn-primary:hover,
 .btn-primary:focus-visible {
-  filter: brightness(1.03);
-  transform: translateY(-1px);
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.35);
   outline: none;
+}
+.btn-primary svg {
+  transition: transform 0.25s ease;
+}
+.btn-primary:hover svg {
+  transform: scale(1.1);
 }
 
 .btn-secondary {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(255, 255, 255, 0.9);
   color: var(--color-ink);
   font-weight: 600;
-  padding: 0.75rem 1.5rem;
-  border-radius: 999px;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
   text-decoration: none;
-  transition: all 0.15s ease;
-  border: 1.5px solid rgba(28, 27, 26, 0.12);
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   cursor: pointer;
   font-size: 0.9375rem;
   white-space: nowrap;
   font-family: inherit;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 .btn-secondary:hover {
   background-color: var(--color-ink);
   color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
 
 .btn-outline-white {
@@ -123,19 +146,21 @@ img {
   background-color: transparent;
   color: #ffffff;
   font-weight: 600;
-  padding: 0.75rem 1.5rem;
-  border-radius: 999px;
+  padding: 0.75rem 1.75rem;
+  border-radius: 9999px;
   text-decoration: none;
-  transition: all 0.15s ease;
-  border: 2px solid rgba(255, 255, 255, 0.55);
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   cursor: pointer;
   font-size: 0.9375rem;
   white-space: nowrap;
   font-family: inherit;
 }
 .btn-outline-white:hover {
-  background-color: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255,255,255,0.1);
 }
 
 .btn-whatsapp {

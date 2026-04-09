@@ -369,22 +369,24 @@ export default function Home() {
           </p>
           <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {mainServices.map(({ to, title, desc, image, eyebrow }) => (
-              <Link key={title} to={to} className="group overflow-hidden rounded-[30px] border border-[var(--color-border)] bg-white shadow-[0_24px_50px_rgba(37,23,8,0.06)] transition-transform duration-200 hover:-translate-y-1">
-                <div className="relative h-52 overflow-hidden">
-                  <img src={image} alt={title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,18,27,0.04)_0%,rgba(12,18,27,0.7)_100%)]" />
-                  <div className="absolute left-4 top-4 rounded-full border border-white/14 bg-black/18 px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/76 backdrop-blur-sm">
+              <Link key={title} to={to} className="group relative overflow-hidden rounded-[30px] border border-[var(--color-border)] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-300 hover:shadow-[0_20px_40px_rgba(249,115,22,0.12)] hover:-translate-y-1.5 focus:outline-none focus:ring-2 focus:ring-[var(--color-orange)] focus:ring-offset-2">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none" />
+                <div className="relative h-56 overflow-hidden">
+                  <img src={image} alt={title} className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]" />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,18,27,0)_0%,rgba(12,18,27,0.85)_100%)] transition-opacity duration-300 group-hover:opacity-90" />
+                  <div className="absolute left-5 top-5 rounded-full border border-white/20 bg-black/30 px-3.5 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-white/90 backdrop-blur-md shadow-sm transition-colors duration-300 group-hover:bg-white/10 group-hover:text-white">
                     {eyebrow}
                   </div>
-                  <div className="absolute inset-x-4 bottom-4 text-white">
-                    <div className="text-xl font-bold">{title}</div>
+                  <div className="absolute inset-x-5 bottom-5 text-white z-20">
+                    <div className="text-2xl font-extrabold tracking-tight transition-transform duration-300 group-hover:translate-x-1">{title}</div>
                   </div>
                 </div>
-                <div className="p-5">
-                  <p className="text-sm leading-relaxed text-[var(--color-muted)]">{desc}</p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-orange-deep)]">
+                <div className="p-6 relative z-20 bg-white">
+                  <div className="absolute left-0 top-0 h-1 w-0 bg-gradient-to-r from-[var(--color-orange)] to-[var(--color-orange-deep)] transition-all duration-500 ease-out group-hover:w-full" />
+                  <p className="text-[0.95rem] leading-relaxed text-[var(--color-muted)] transition-colors duration-300 group-hover:text-[var(--color-ink)]">{desc}</p>
+                  <span className="mt-5 inline-flex items-center gap-2 text-[0.9rem] font-bold text-[var(--color-orange-deep)] transition-all duration-300 group-hover:gap-3 group-hover:text-[var(--color-orange)]">
                     Explore service
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true" className="transition-transform duration-300">
                       <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
                     </svg>
                   </span>

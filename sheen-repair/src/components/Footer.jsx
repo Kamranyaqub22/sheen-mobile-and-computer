@@ -15,27 +15,27 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer style={{ backgroundColor: '#12203a', color: '#ccd4e0' }}>
+    <footer className="bg-[var(--color-navy-dark)] text-[#ccd4e0] border-t border-white/5">
       {/* Main footer grid */}
-      <div className="max-w-6xl mx-auto px-4 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="max-w-6xl mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
 
         {/* Brand / About */}
-        <div className="lg:col-span-1">
-          <div className="mb-3">
-            <span className="text-white font-bold text-lg block leading-tight">PC &amp; Mobile</span>
-            <span className="text-white font-bold text-lg block leading-tight">Phone Repair Shop</span>
-            <span className="text-xs font-medium mt-1 block" style={{ color: 'var(--color-orange-soft)' }}>Serving East Sheen &amp; SW14</span>
+        <div className="lg:col-span-1 flex flex-col gap-4">
+          <div className="mb-1">
+            <span className="text-white font-extrabold text-xl block leading-tight tracking-tight">PC &amp; Mobile</span>
+            <span className="text-white font-extrabold text-xl block leading-tight tracking-tight">Phone Repair Shop</span>
+            <span className="text-[0.65rem] uppercase tracking-widest font-bold mt-2 block text-[col] text-[var(--color-orange-soft)]">Serving East Sheen &amp; SW14</span>
           </div>
-          <p className="text-sm leading-relaxed text-white/65 mb-4">
+          <p className="text-[0.95rem] leading-relaxed text-white/50 mb-2 font-medium">
             Your local repair shop on Sheen Lane. We fix iPhones, Samsungs,
             laptops, MacBooks, tablets, TVs and more. Walk-ins always welcome.
           </p>
-          <div className="flex gap-3">
+          <div className="flex gap-3 mt-auto">
             <a
               href="https://wa.me/442088787266"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-whatsapp text-sm py-2 px-4"
+              className="btn-whatsapp text-sm py-2.5 px-5 shadow-lg shadow-green-500/10 hover:shadow-green-500/20 transition-all font-semibold"
               aria-label="WhatsApp us"
             >
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
