@@ -13,11 +13,11 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 w-full shadow-[0_10px_30px_rgba(15,23,42,0.14)]">
-      <div className="border-b border-white/8 bg-[var(--color-navy-dark)]/95 backdrop-blur">
+    <header className="sticky top-0 z-50 w-full shadow-[0_10px_30px_rgba(15,23,42,0.18)] transition-all duration-300">
+      <div className="border-b border-white/5 bg-[var(--color-navy-dark)]/90 backdrop-blur-xl">
         <div className="max-w-6xl mx-auto flex items-center justify-between gap-4 px-4 py-2.5 text-xs sm:text-sm">
           <div className="flex min-w-0 items-center gap-3 text-white/72">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-white/88">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 font-medium text-white/90 shadow-inner">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
                 <circle cx="12" cy="10" r="3"/>
