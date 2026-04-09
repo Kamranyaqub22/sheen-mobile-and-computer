@@ -3,9 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 
 const navLinks = [
   { to: '/', label: 'Home' },
-  { to: '/phone-repairs', label: 'Phone Repairs' },
-  { to: '/laptop-macbook-repairs', label: 'Laptop & MacBook' },
-  { to: '/other-repairs', label: 'Other Repairs' },
+  { to: '/repairs', label: 'Repairs' },
   { to: '/accessories-buy-sell', label: 'Accessories / Buy & Sell' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
@@ -37,7 +35,7 @@ export default function Header() {
           </div>
           <a
             href="tel:02088787266"
-            className="flex items-center gap-2 text-white font-bold text-sm sm:text-base hover:text-yellow-300 transition-colors"
+            className="flex items-center gap-2 text-white font-bold text-sm sm:text-base transition-colors hover:text-[var(--color-orange-soft)]"
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
@@ -59,7 +57,7 @@ export default function Header() {
             <span className="text-white font-bold text-base sm:text-lg leading-tight">
               PC &amp; Mobile Repair
             </span>
-            <span style={{ color: '#f5a623' }} className="text-xs font-medium tracking-wide hidden sm:block">
+            <span style={{ color: 'var(--color-orange-soft)' }} className="text-xs font-medium tracking-wide hidden sm:block">
               East Sheen · SW14
             </span>
           </Link>
@@ -74,7 +72,7 @@ export default function Header() {
                 className={({ isActive }) =>
                   `px-3 py-1.5 rounded text-sm font-medium transition-colors ${
                     isActive
-                      ? 'text-yellow-300'
+                      ? 'text-[var(--color-orange-soft)]'
                       : 'text-white/85 hover:text-white'
                   }`
                 }
@@ -85,16 +83,21 @@ export default function Header() {
           </nav>
 
           {/* Desktop CTA */}
-          <a
-            href="tel:02088787266"
+          <Link
+            to="/book-repair"
             className="hidden lg:inline-flex items-center gap-2 btn-primary text-sm ml-4"
-            aria-label="Call us now"
+            aria-label="Book a repair"
           >
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M8 6h13"/>
+              <path d="M8 12h13"/>
+              <path d="M8 18h13"/>
+              <path d="M3 6h.01"/>
+              <path d="M3 12h.01"/>
+              <path d="M3 18h.01"/>
             </svg>
-            Call Now
-          </a>
+            Book Repair
+          </Link>
 
           {/* Mobile — phone icon + hamburger */}
           <div className="flex items-center gap-3 lg:hidden">
@@ -142,7 +145,7 @@ export default function Header() {
                 className={({ isActive }) =>
                   `block px-3 py-2.5 rounded text-sm font-medium transition-colors ${
                     isActive
-                      ? 'text-yellow-300 bg-white/5'
+                      ? 'text-[var(--color-orange-soft)] bg-white/5'
                       : 'text-white/85 hover:text-white hover:bg-white/5'
                   }`
                 }
@@ -150,8 +153,19 @@ export default function Header() {
                 {label}
               </NavLink>
             ))}
-            <div className="mt-3 pt-3" style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>
-              <a href="tel:02088787266" className="btn-primary w-full justify-center">
+            <div className="mt-3 grid gap-3 pt-3" style={{ borderTop: '1px solid rgba(255,255,255,0.12)' }}>
+              <Link to="/book-repair" onClick={() => setMenuOpen(false)} className="btn-primary w-full justify-center">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M8 6h13"/>
+                  <path d="M8 12h13"/>
+                  <path d="M8 18h13"/>
+                  <path d="M3 6h.01"/>
+                  <path d="M3 12h.01"/>
+                  <path d="M3 18h.01"/>
+                </svg>
+                Book Repair
+              </Link>
+              <a href="tel:02088787266" className="btn-outline-white w-full justify-center">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                 </svg>

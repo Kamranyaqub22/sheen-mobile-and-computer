@@ -35,7 +35,7 @@ const localBusinessSchema = JSON.stringify({
 /* ─── Data ─── */
 const mainServices = [
   {
-    to: '/phone-repairs',
+    to: '/repairs/phones',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
@@ -46,7 +46,7 @@ const mainServices = [
     desc: 'iPhone, Samsung, Google Pixel, OnePlus and more. Screens, batteries, charging ports, camera, water damage.',
   },
   {
-    to: '/laptop-macbook-repairs',
+    to: '/repairs/laptops-macbooks',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="20" x2="22" y2="20"/>
@@ -56,7 +56,7 @@ const mainServices = [
     desc: 'Windows laptops, MacBook Pro and MacBook Air. Screen replacement, keyboard, battery, software, motherboard.',
   },
   {
-    to: '/phone-repairs',
+    to: '/book-repair?category=phones',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z"/>
@@ -67,7 +67,7 @@ const mainServices = [
     desc: 'Cracked or unresponsive screen? We carry parts for most current models. In most cases, replaced same day.',
   },
   {
-    to: '/phone-repairs',
+    to: '/book-repair?category=phones',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
@@ -78,7 +78,7 @@ const mainServices = [
     desc: 'Battery draining fast or not holding charge? We replace batteries for all major phone and laptop models.',
   },
   {
-    to: '/laptop-macbook-repairs',
+    to: '/repairs/laptops-macbooks',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
@@ -89,14 +89,14 @@ const mainServices = [
     desc: 'Lost photos, contacts or files from a damaged device? We can often recover data others can\'t.',
   },
   {
-    to: '/other-repairs',
+    to: '/repairs/game-consoles',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/>
       </svg>
     ),
-    title: 'TV & Console Repairs',
-    desc: 'Smart TV faults, PlayStation, Xbox and other console issues. Bring it in for a free diagnosis.',
+    title: 'Console Repairs',
+    desc: 'PlayStation, Xbox and Nintendo Switch repairs with HDMI, fan, storage and power diagnostics.',
   },
 ]
 
@@ -295,8 +295,8 @@ export default function Home() {
                 </svg>
                 WhatsApp Us
               </a>
-              <Link to="/contact" className="btn-outline-white text-base px-6 py-3">
-                Get a Quote
+              <Link to="/book-repair" className="btn-outline-white text-base px-6 py-3">
+                Book Repair
               </Link>
             </div>
           </div>
@@ -352,8 +352,8 @@ export default function Home() {
             ))}
           </div>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Link to="/phone-repairs" className="btn-secondary text-sm">Phone Repairs</Link>
-            <Link to="/laptop-macbook-repairs" className="btn-secondary text-sm">Laptop &amp; MacBook</Link>
+            <Link to="/repairs" className="btn-secondary text-sm">Browse Repairs</Link>
+            <Link to="/book-repair" className="btn-secondary text-sm">Book Repair</Link>
             <Link to="/other-repairs" className="btn-secondary text-sm">TV &amp; Other Repairs</Link>
           </div>
         </div>

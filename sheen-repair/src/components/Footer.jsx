@@ -1,16 +1,14 @@
 import { Link } from 'react-router-dom'
 
 const services = [
-  { to: '/phone-repairs', label: 'iPhone Repair' },
-  { to: '/phone-repairs', label: 'Samsung Repair' },
-  { to: '/phone-repairs', label: 'Screen Replacement' },
-  { to: '/phone-repairs', label: 'Battery Replacement' },
-  { to: '/phone-repairs', label: 'Water Damage Repair' },
-  { to: '/laptop-macbook-repairs', label: 'Laptop Repair' },
-  { to: '/laptop-macbook-repairs', label: 'MacBook Repair' },
-  { to: '/laptop-macbook-repairs', label: 'Data Recovery' },
-  { to: '/other-repairs', label: 'TV Repair' },
-  { to: '/other-repairs', label: 'Games Console Repair' },
+  { to: '/repairs/phones/apple', label: 'iPhone Repairs' },
+  { to: '/repairs/phones/samsung', label: 'Samsung Repairs' },
+  { to: '/book-repair?category=phones', label: 'Screen & Battery Repairs' },
+  { to: '/repairs/laptops-macbooks', label: 'Laptop & MacBook Repairs' },
+  { to: '/repairs/tablets', label: 'Tablet Repairs' },
+  { to: '/repairs/game-consoles', label: 'Games Console Repairs' },
+  { to: '/book-repair', label: 'Book Repair Service' },
+  { to: '/other-repairs', label: 'TV & Other Repairs' },
 ]
 
 export default function Footer() {
@@ -26,7 +24,7 @@ export default function Footer() {
           <div className="mb-3">
             <span className="text-white font-bold text-lg block leading-tight">PC &amp; Mobile</span>
             <span className="text-white font-bold text-lg block leading-tight">Phone Repair Shop</span>
-            <span className="text-xs font-medium mt-1 block" style={{ color: '#f5a623' }}>Serving East Sheen &amp; SW14</span>
+            <span className="text-xs font-medium mt-1 block" style={{ color: 'var(--color-orange-soft)' }}>Serving East Sheen &amp; SW14</span>
           </div>
           <p className="text-sm leading-relaxed text-white/65 mb-4">
             Your local repair shop on Sheen Lane. We fix iPhones, Samsungs,
@@ -72,12 +70,13 @@ export default function Footer() {
           <ul className="space-y-2">
             {[
               { to: '/', label: 'Home' },
-              { to: '/phone-repairs', label: 'Phone Repairs' },
-              { to: '/laptop-macbook-repairs', label: 'Laptop & MacBook Repairs' },
+              { to: '/repairs', label: 'Repairs' },
+              { to: '/book-repair', label: 'Book Repair' },
               { to: '/other-repairs', label: 'Other Repairs' },
               { to: '/accessories-buy-sell', label: 'Accessories / Buy & Sell' },
               { to: '/about', label: 'About Us' },
               { to: '/contact', label: 'Contact' },
+              { to: '/admin', label: 'Admin Preview' },
             ].map(({ to, label }) => (
               <li key={to + label}>
                 <Link
