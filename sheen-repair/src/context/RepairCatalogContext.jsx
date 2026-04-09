@@ -273,6 +273,7 @@ function createRepairPayload(existingRepairs, values) {
     turnaround: values.turnaround.trim(),
     warranty: values.warranty.trim(),
     notes: values.notes.trim(),
+    icon: values.icon?.trim() || '',
   }
 }
 
@@ -326,6 +327,7 @@ function buildRemoteRepairInsert(modelId, values, position, existingRepairs) {
     turnaround: values.turnaround.trim(),
     warranty: values.warranty.trim(),
     notes: values.notes.trim(),
+    icon: values.icon?.trim() || '',
     position,
   }
 }
@@ -997,6 +999,7 @@ export function RepairCatalogProvider({ children }) {
                         turnaround: values.turnaround.trim(),
                         warranty: values.warranty.trim(),
                         notes: values.notes.trim(),
+                        icon: values.icon?.trim() || '',
                       }
                     }),
                   }
@@ -1026,6 +1029,7 @@ export function RepairCatalogProvider({ children }) {
             turnaround: values.turnaround.trim(),
             warranty: values.warranty.trim(),
             notes: values.notes.trim(),
+            icon: values.icon?.trim() || '',
           })
           .eq('id', repairId)
 

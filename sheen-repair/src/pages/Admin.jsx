@@ -32,7 +32,29 @@ const emptyRepairForm = {
   turnaround: '',
   warranty: '',
   notes: '',
+  icon: '',
 }
+
+const REPAIR_ICONS = [
+  { emoji: '📱', label: 'Phone' },
+  { emoji: '💻', label: 'Laptop' },
+  { emoji: '🖥️', label: 'Screen' },
+  { emoji: '🔋', label: 'Battery' },
+  { emoji: '🔌', label: 'Charging' },
+  { emoji: '📷', label: 'Camera' },
+  { emoji: '🔊', label: 'Speaker' },
+  { emoji: '🎤', label: 'Mic' },
+  { emoji: '💧', label: 'Water damage' },
+  { emoji: '🔘', label: 'Button' },
+  { emoji: '⌨️', label: 'Keyboard' },
+  { emoji: '🌐', label: 'WiFi' },
+  { emoji: '💾', label: 'Storage' },
+  { emoji: '🎮', label: 'Gaming' },
+  { emoji: '🔧', label: 'Repair' },
+  { emoji: '🧹', label: 'Cleaning' },
+  { emoji: '🛡️', label: 'Screen protector' },
+  { emoji: '🏠', label: 'Home button' },
+]
 
 const STATUS_OPTIONS = [
   { value: 'new', label: 'New request', color: 'bg-blue-50 text-blue-700 border-blue-200' },
@@ -50,7 +72,44 @@ function statusLabel(status) {
   return STATUS_OPTIONS.find((s) => s.value === status)?.label || status
 }
 
+function IconPicker({ value, onChange }) {
+  return (
+    <div>
+      <label className="block text-xs font-semibold text-[var(--color-ink)] mb-2">
+        Service icon <span className="font-normal text-[var(--color-muted)]">(optional — shown next to the service name)</span>
+      </label>
+      <div className="flex flex-wrap gap-1.5">
+        {REPAIR_ICONS.map((icon) => (
+          <button
+            key={icon.emoji}
+            type="button"
+            title={icon.label}
+            onClick={() => onChange(value === icon.emoji ? '' : icon.emoji)}
+            className={`flex h-9 w-9 items-center justify-center rounded-xl border text-lg transition-colors ${
+              value === icon.emoji
+                ? 'border-[var(--color-brand)] bg-[var(--color-brand)] shadow-sm'
+                : 'border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-brand)]'
+            }`}
+          >
+            {icon.emoji}
+          </button>
+        ))}
+        {value && !REPAIR_ICONS.some((i) => i.emoji === value) && (
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-[var(--color-brand)] bg-[var(--color-brand)] text-lg">{value}</span>
+        )}
+      </div>
+      {value && (
+        <button type="button" className="mt-1 text-xs text-[var(--color-muted)] hover:text-[var(--color-ink)]" onClick={() => onChange('')}>
+          Clear icon
+        </button>
+      )}
+    </div>
+  )
+}
+
 function RepairRowEditor({ repair, onSave, onDelete }) {
+  const [selectedIcon, setSelectedIcon] = useState(repair.icon || '')
+
   const handleSubmit = (event) => {
     event.preventDefault()
 
@@ -62,6 +121,7 @@ function RepairRowEditor({ repair, onSave, onDelete }) {
       turnaround: String(formData.get('turnaround') || ''),
       warranty: String(formData.get('warranty') || ''),
       notes: String(formData.get('notes') || ''),
+      icon: selectedIcon,
     })
   }
 
@@ -88,6 +148,9 @@ function RepairRowEditor({ repair, onSave, onDelete }) {
       <div className="mt-3">
         <label className="block text-xs font-semibold text-[var(--color-ink)] mb-1">Notes <span className="font-normal text-[var(--color-muted)]">(optional)</span></label>
         <textarea name="notes" className="form-input resize-y" rows={2} defaultValue={repair.notes} placeholder="Any extra info customers should know" />
+      </div>
+      <div className="mt-3">
+        <IconPicker value={selectedIcon} onChange={setSelectedIcon} />
       </div>
       <div className="mt-3 flex flex-wrap gap-3">
         <button type="submit" className="btn-primary text-sm">Save changes</button>
@@ -780,7 +843,7 @@ export default function Admin() {
                         className={`rounded-xl border px-4 py-2 text-sm font-semibold transition-colors ${
                           selectedCategory?.id === category.id
                             ? 'border-[var(--color-brand)] bg-[var(--color-brand)] text-white'
-                            : 'border-[var(--color-border)] bg-white text-[var(--color-ink)] hover:border-[var(--color-brand)]'
+                            : 'border-2 border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-ink)] shadow-sm hover:border-[var(--color-brand)] hover:shadow-md'
                         }`}
                       >
                         {category.name}
@@ -814,7 +877,7 @@ export default function Admin() {
                               className={`rounded-xl border px-3 py-1.5 text-sm font-semibold transition-colors ${
                                 selectedBrand?.id === brand.id
                                   ? 'border-[var(--color-brand)] bg-[var(--color-brand)] text-white'
-                                  : 'border-[var(--color-border)] bg-white text-[var(--color-ink)] hover:border-[var(--color-brand)]'
+                                  : 'border-2 border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-ink)] shadow-sm hover:border-[var(--color-brand)] hover:shadow-md'
                               }`}
                             >
                               {brand.name}
@@ -846,7 +909,7 @@ export default function Admin() {
                               className={`rounded-xl border px-3 py-1.5 text-sm font-semibold transition-colors ${
                                 selectedModel?.id === model.id
                                   ? 'border-[var(--color-brand)] bg-[var(--color-brand)] text-white'
-                                  : 'border-[var(--color-border)] bg-white text-[var(--color-ink)] hover:border-[var(--color-brand)]'
+                                  : 'border-2 border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-ink)] shadow-sm hover:border-[var(--color-brand)] hover:shadow-md'
                               }`}
                             >
                               {model.name}
@@ -946,6 +1009,9 @@ export default function Admin() {
                             onChange={(event) => setNewRepairForm((form) => ({ ...form, notes: event.target.value }))}
                           />
                         </div>
+                        <div className="mt-3">
+                          <IconPicker value={newRepairForm.icon} onChange={(emoji) => setNewRepairForm((form) => ({ ...form, icon: emoji }))} />
+                        </div>
                         <button
                           type="button"
                           className="btn-primary mt-3 text-sm"
@@ -967,7 +1033,7 @@ export default function Admin() {
                           </p>
                           {selectedModel.repairs.map((repair) => (
                             <RepairRowEditor
-                              key={`${repair.id}-${repair.name}-${repair.price}-${repair.turnaround}-${repair.warranty}-${repair.notes}`}
+                              key={`${repair.id}-${repair.name}-${repair.price}-${repair.turnaround}-${repair.warranty}-${repair.notes}-${repair.icon}`}
                               repair={repair}
                               onSave={(form) => updateRepair(selectedCategory.id, selectedBrand.id, selectedModel.id, repair.id, form)}
                               onDelete={() => {
@@ -1296,7 +1362,7 @@ export default function Admin() {
                       uploadLabel="Device photo"
                       hint="Tip: a clear product or repair photo around 1200–1600px tall works best."
                       uploadOptions={{ maxWidth: 1600, maxHeight: 1600, quality: 0.84 }}
-                      previewClassName="aspect-[4/5]"
+                      previewClassName="max-h-[22rem] w-full"
                     />
                   ) : null}
 
