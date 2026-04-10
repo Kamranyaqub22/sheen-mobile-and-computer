@@ -63,7 +63,7 @@ export default function Accessories() {
       <section className="section-pad">
         <div className="max-w-6xl mx-auto px-4">
           <span className="section-label">In-store stock</span>
-          <h2 className="text-2xl font-bold mb-3" style={{ color: '#1c2d4a' }}>Phone &amp; gadget accessories</h2>
+          <h2 className="text-2xl font-bold mb-3" >Phone &amp; gadget accessories</h2>
           <p className="text-gray-500 mb-7 max-w-xl">
             We keep a practical range of accessories in the shop. Stock changes — call ahead if you
             need something specific and we&apos;ll let you know if we have it.
@@ -71,8 +71,8 @@ export default function Accessories() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {accessories.map(({ title, body }) => (
               <div key={title} className="service-card">
-                <h3 className="font-semibold mb-2" style={{ color: '#1c2d4a', fontSize: '0.9375rem' }}>{title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: '#555' }}>{body}</p>
+                <h3 className="font-semibold mb-2 text-[var(--color-text)] text-[0.9375rem]">{title}</h3>
+                <p className="text-sm leading-relaxed" >{body}</p>
               </div>
             ))}
           </div>
@@ -80,11 +80,11 @@ export default function Accessories() {
       </section>
 
       {/* Buy & Sell */}
-      <section className="section-pad" style={{ backgroundColor: '#f8f6f2' }}>
+      <section className="section-pad bg-[var(--color-bg-alt)]">
         <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8">
           {/* Buy */}
           <div className="panel-card p-6">
-            <h2 className="text-xl font-bold mb-3" style={{ color: '#1c2d4a' }}>Buy a second-hand device</h2>
+            <h2 className="text-xl font-bold mb-3" >Buy a second-hand device</h2>
             <p className="text-sm text-gray-500 mb-4 leading-relaxed">
               We sell refurbished phones and laptops in-store. Stock changes regularly —
               all devices are tested and cleaned before sale. Come in or call to find
@@ -92,7 +92,7 @@ export default function Accessories() {
             </p>
             <ul className="text-sm text-gray-600 space-y-1.5 mb-5">
               {['Refurbished iPhones','Samsung Galaxy devices','Windows laptops','MacBooks (when available)','All tested before sale','Sold with a short warranty'].map((i) => (
-                <li key={i} className="flex gap-2"><span style={{ color: '#c0392b' }}>✓</span>{i}</li>
+                <li key={i} className="flex gap-2"><span className="text-[var(--color-red)]">✓</span>{i}</li>
               ))}
             </ul>
             <a href="tel:02088787266" className="btn-primary text-sm">
@@ -102,7 +102,7 @@ export default function Accessories() {
 
           {/* Sell */}
           <div className="panel-card p-6">
-            <h2 className="text-xl font-bold mb-3" style={{ color: '#1c2d4a' }}>Sell or trade in your device</h2>
+            <h2 className="text-xl font-bold mb-3" >Sell or trade in your device</h2>
             <p className="text-sm text-gray-500 mb-4 leading-relaxed">
               Got an old phone or laptop sitting in a drawer? We buy used devices for cash — working
               or faulty. Prices are agreed on the day based on the condition and model.
@@ -110,7 +110,7 @@ export default function Accessories() {
             </p>
             <ul className="text-sm text-gray-600 space-y-1.5 mb-5">
               {['iPhones — working or faulty','Samsung and Android phones','Windows laptops','MacBooks (working or damaged)','Tablets and iPads','We assess on the spot'].map((i) => (
-                <li key={i} className="flex gap-2"><span style={{ color: '#c0392b' }}>✓</span>{i}</li>
+                <li key={i} className="flex gap-2"><span className="text-[var(--color-red)]">✓</span>{i}</li>
               ))}
             </ul>
             <a href="tel:02088787266" className="btn-primary text-sm">
@@ -123,7 +123,7 @@ export default function Accessories() {
       {/* Also see */}
       <section className="section-pad">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-xl font-bold mb-4" style={{ color: '#1c2d4a' }}>Also looking for…</h2>
+          <h2 className="text-xl font-bold mb-4" >Also looking for…</h2>
           <div className="flex flex-wrap gap-3">
             <Link to="/repairs/phones" className="btn-secondary text-sm">Phone Repairs</Link>
             <Link to="/repairs/laptops-macbooks" className="btn-secondary text-sm">Laptop &amp; MacBook Repairs</Link>

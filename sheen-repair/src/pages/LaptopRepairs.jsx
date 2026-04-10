@@ -62,9 +62,9 @@ export default function LaptopRepairs() {
       </Helmet>
 
       {/* Page header */}
-      <section style={{ backgroundColor: '#1c2d4a' }} className="py-12">
+      <section className="py-12 bg-[#111111] text-white">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="flex items-center gap-2 text-sm mb-4" style={{ color: 'rgba(255,255,255,0.55)' }}>
+          <div className="flex items-center gap-2 text-sm mb-4 text-white/50">
             <Link to="/" className="hover:text-white transition-colors">Home</Link>
             <span>/</span>
             <span className="text-white/80">Laptop &amp; MacBook Repairs</span>
@@ -72,7 +72,7 @@ export default function LaptopRepairs() {
           <h1 className="text-3xl sm:text-4xl font-bold text-white mb-3">
             Laptop &amp; MacBook Repairs in East Sheen
           </h1>
-          <p className="max-w-2xl text-lg" style={{ color: 'rgba(255,255,255,0.75)' }}>
+          <p className="max-w-2xl text-lg text-white/65">
             MacBook and Windows laptop repairs at 65 Sheen Lane, London SW14.
             Screen, battery, keyboard, data recovery — we do it all in-house.
           </p>
@@ -91,10 +91,10 @@ export default function LaptopRepairs() {
       </section>
 
       {/* MacBook vs Windows split */}
-      <section className="section-pad" style={{ backgroundColor: '#f8f6f2' }}>
+      <section className="section-pad bg-[var(--color-bg-alt)]">
         <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-6">
-          <div className="rounded-lg p-6" style={{ backgroundColor: '#fff', border: '1px solid #e5e1d8' }}>
-            <h2 className="text-xl font-bold mb-3" style={{ color: '#1c2d4a' }}>MacBook Repairs</h2>
+          <div className="rounded-lg p-6 bg-white border border-[var(--color-border)] rounded-xl">
+            <h2 className="text-xl font-bold mb-3" >MacBook Repairs</h2>
             <p className="text-sm text-gray-500 mb-4 leading-relaxed">
               Apple devices are expensive — we understand you want them repaired properly.
               We work on all MacBook Pro and MacBook Air models, including M1, M2 and M3 chip
@@ -103,13 +103,13 @@ export default function LaptopRepairs() {
             <ul className="text-sm text-gray-600 space-y-1.5">
               {['MacBook screen replacement','MacBook battery replacement','MacBook keyboard replacement','Logic board diagnostics','macOS reinstall & recovery','SSD upgrade or replacement'].map((i) => (
                 <li key={i} className="flex items-center gap-2">
-                  <span style={{ color: '#c0392b' }}>✓</span>{i}
+                  <span className="text-[var(--color-red)]">✓</span>{i}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="rounded-lg p-6" style={{ backgroundColor: '#fff', border: '1px solid #e5e1d8' }}>
-            <h2 className="text-xl font-bold mb-3" style={{ color: '#1c2d4a' }}>Windows Laptop Repairs</h2>
+          <div className="rounded-lg p-6 bg-white border border-[var(--color-border)] rounded-xl">
+            <h2 className="text-xl font-bold mb-3" >Windows Laptop Repairs</h2>
             <p className="text-sm text-gray-500 mb-4 leading-relaxed">
               We repair Dell, HP, Lenovo, Asus, Acer and most other brands. Whether it&apos;s a
               cracked screen, a laptop that won&apos;t start, or a slow machine that needs upgrading —
@@ -118,7 +118,7 @@ export default function LaptopRepairs() {
             <ul className="text-sm text-gray-600 space-y-1.5">
               {['Screen replacement','Battery replacement','Keyboard & trackpad','Motherboard repair','Windows reinstall & virus removal','RAM & SSD upgrade'].map((i) => (
                 <li key={i} className="flex items-center gap-2">
-                  <span style={{ color: '#c0392b' }}>✓</span>{i}
+                  <span className="text-[var(--color-red)]">✓</span>{i}
                 </li>
               ))}
             </ul>
@@ -130,12 +130,12 @@ export default function LaptopRepairs() {
       <section className="section-pad">
         <div className="max-w-6xl mx-auto px-4">
           <span className="section-label">All services</span>
-          <h2 className="text-2xl font-bold mb-8" style={{ color: '#1c2d4a' }}>Laptop &amp; MacBook repair services</h2>
+          <h2 className="text-2xl font-bold mb-8" >Laptop &amp; MacBook repair services</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {repairs.map(({ title, body }) => (
               <div key={title} className="service-card">
-                <h3 className="font-semibold mb-2" style={{ color: '#1c2d4a', fontSize: '0.9375rem' }}>{title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: '#555' }}>{body}</p>
+                <h3 className="font-semibold mb-2 text-[var(--color-text)] text-[0.9375rem]">{title}</h3>
+                <p className="text-sm leading-relaxed" >{body}</p>
               </div>
             ))}
           </div>
@@ -143,15 +143,15 @@ export default function LaptopRepairs() {
       </section>
 
       {/* Brands */}
-      <section className="section-pad" style={{ backgroundColor: '#f8f6f2' }}>
+      <section className="section-pad bg-[var(--color-bg-alt)]">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-3" style={{ color: '#1c2d4a' }}>Brands &amp; models we work on</h2>
+          <h2 className="text-2xl font-bold mb-3" >Brands &amp; models we work on</h2>
           <p className="text-gray-500 mb-5">
             Not sure if we cover your laptop? Call us — we handle most consumer brands.
           </p>
           <div className="flex flex-wrap gap-2">
             {brands.map((b) => (
-              <span key={b} className="text-sm px-3 py-1.5 rounded font-medium" style={{ backgroundColor: '#fff', color: '#1c2d4a', border: '1px solid #ddd8ce' }}>
+              <span key={b} className="text-sm px-3 py-1.5 rounded font-medium bg-white border border-[var(--color-border)] rounded-md px-3 py-1.5 text-sm font-medium">
                 {b}
               </span>
             ))}
@@ -162,7 +162,7 @@ export default function LaptopRepairs() {
       {/* Also see */}
       <section className="section-pad">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-xl font-bold mb-4" style={{ color: '#1c2d4a' }}>Also looking for…</h2>
+          <h2 className="text-xl font-bold mb-4" >Also looking for…</h2>
           <div className="flex flex-wrap gap-3">
             <Link to="/phone-repairs" className="btn-secondary text-sm">Phone Repairs</Link>
             <Link to="/other-repairs" className="btn-secondary text-sm">TV &amp; Console Repairs</Link>
@@ -172,10 +172,10 @@ export default function LaptopRepairs() {
       </section>
 
       {/* Contact CTA */}
-      <section className="section-pad" style={{ backgroundColor: '#1c2d4a' }}>
+      <section className="section-pad bg-[#111111] text-white">
         <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-2xl font-bold text-white mb-2">Need a laptop or MacBook repair?</h2>
-          <p className="mb-6" style={{ color: 'rgba(255,255,255,0.65)' }}>
+          <p className="mb-6" >
             Describe what&apos;s happening and we&apos;ll advise. Or walk in — free diagnostics, no appointment needed.
           </p>
           <ContactForm light />

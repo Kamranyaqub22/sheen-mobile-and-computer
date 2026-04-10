@@ -42,9 +42,9 @@ export default function OtherRepairs() {
       </Helmet>
 
       {/* Page header */}
-      <section style={{ backgroundColor: '#1c2d4a' }} className="py-12">
+      <section className="py-12 bg-[#111111] text-white">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="flex items-center gap-2 text-sm mb-4" style={{ color: 'rgba(255,255,255,0.55)' }}>
+          <div className="flex items-center gap-2 text-sm mb-4 text-white/50">
             <Link to="/" className="hover:text-white transition-colors">Home</Link>
             <span>/</span>
             <span className="text-white/80">Other Repairs</span>
@@ -52,7 +52,7 @@ export default function OtherRepairs() {
           <h1 className="text-3xl sm:text-4xl font-bold text-white mb-3">
             TV, Console &amp; Gadget Repairs
           </h1>
-          <p className="max-w-2xl text-lg" style={{ color: 'rgba(255,255,255,0.75)' }}>
+          <p className="max-w-2xl text-lg text-white/65">
             We repair smart TVs, PlayStation, Xbox, Nintendo Switch, iPads and other devices at
             65 Sheen Lane, East Sheen SW14. Walk-ins welcome.
           </p>
@@ -75,12 +75,12 @@ export default function OtherRepairs() {
         <div className="max-w-6xl mx-auto px-4 space-y-12">
           {faults.map(({ category, items }) => (
             <div key={category}>
-              <h2 className="text-xl font-bold mb-5" style={{ color: '#1c2d4a', borderBottom: '2px solid #e5e1d8', paddingBottom: '0.5rem' }}>{category}</h2>
+              <h2 className="text-xl font-bold mb-5 text-[var(--color-text)] border-b border-[var(--color-border)] pb-2">{category}</h2>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {items.map(({ title, body }) => (
                   <div key={title} className="service-card">
-                    <h3 className="font-semibold mb-2" style={{ color: '#1c2d4a', fontSize: '0.9375rem' }}>{title}</h3>
-                    <p className="text-sm leading-relaxed" style={{ color: '#555' }}>{body}</p>
+                    <h3 className="font-semibold mb-2 text-[var(--color-text)] text-[0.9375rem]">{title}</h3>
+                    <p className="text-sm leading-relaxed" >{body}</p>
                   </div>
                 ))}
               </div>
@@ -90,10 +90,10 @@ export default function OtherRepairs() {
       </section>
 
       {/* Call out services */}
-      <section className="section-pad" style={{ backgroundColor: '#f8f6f2' }}>
+      <section className="section-pad bg-[var(--color-bg-alt)]">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="rounded-lg p-6 md:p-8" style={{ backgroundColor: '#fff', border: '1px solid #e5e1d8' }}>
-            <h2 className="text-xl font-bold mb-3" style={{ color: '#1c2d4a' }}>Call-out service available</h2>
+          <div className="rounded-lg p-6 md:p-8 bg-white border border-[var(--color-border)] rounded-xl">
+            <h2 className="text-xl font-bold mb-3" >Call-out service available</h2>
             <p className="text-gray-500 mb-4 max-w-2xl leading-relaxed">
               For large items like TVs or desktop computers that are difficult to bring in, we can
               arrange a call-out to your home or office in the East Sheen, Richmond and Barnes area.
@@ -107,7 +107,7 @@ export default function OtherRepairs() {
       {/* Also see */}
       <section className="section-pad">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-xl font-bold mb-4" style={{ color: '#1c2d4a' }}>Also looking for…</h2>
+          <h2 className="text-xl font-bold mb-4" >Also looking for…</h2>
           <div className="flex flex-wrap gap-3">
             <Link to="/phone-repairs" className="btn-secondary text-sm">Phone Repairs</Link>
             <Link to="/laptop-macbook-repairs" className="btn-secondary text-sm">Laptop &amp; MacBook Repairs</Link>
@@ -117,10 +117,10 @@ export default function OtherRepairs() {
       </section>
 
       {/* Contact CTA */}
-      <section className="section-pad" style={{ backgroundColor: '#1c2d4a' }}>
+      <section className="section-pad bg-[#111111] text-white">
         <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-2xl font-bold text-white mb-2">Got a broken TV or console?</h2>
-          <p className="mb-6" style={{ color: 'rgba(255,255,255,0.65)' }}>
+          <p className="mb-6" >
             Bring it in or drop us a message with the make, model and fault. Free diagnosis on all devices.
           </p>
           <ContactForm light />

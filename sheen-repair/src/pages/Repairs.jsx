@@ -152,42 +152,38 @@ export default function Repairs() {
         <div className="page-hero-shell">
           <div className="max-w-6xl mx-auto px-4 grid gap-10 lg:grid-cols-[minmax(0,1.02fr)_minmax(20rem,0.98fr)] items-start">
             <div>
-              <span className="section-label text-[var(--color-orange-soft)]">Structured repair journey</span>
-              <h1 className="max-w-3xl text-4xl font-black tracking-tight text-white md:text-6xl">
-                Pick the device category, then the brand, model, and exact repair.
+              <span className="section-label text-[var(--color-orange-soft)]">East Sheen · 65 Sheen Lane · SW14</span>
+              <h1 className="max-w-3xl text-4xl font-black tracking-tight text-white md:text-6xl uppercase">
+                Find Your Repair
               </h1>
-              <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/74 md:text-lg">
-                This flow gives you cleaner pricing, faster quoting, and a professional booking journey.
-                It also creates the right foundation for an admin area where new brands, models, and repair
-                services can be added without touching code.
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-white/65 md:text-lg">
+                Select your device type, brand, and model to see exact repair prices.
+                Walk in or book online — most common repairs are done the same day.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-7 flex flex-wrap gap-3">
                 <Link to="/book-repair" className="btn-primary px-6 py-3 text-base">
-                  Book Repair Service
+                  Book a Repair
                 </Link>
                 <a href="tel:02088787266" className="btn-outline-white px-6 py-3 text-base">
                   Call 020 8878 7266
                 </a>
               </div>
               <div className="mt-6 flex flex-wrap gap-2 text-sm text-white/78">
-                <span className="stat-pill border-white/12 bg-white/6 text-white/88">{catalog.length} categories</span>
+                <span className="stat-pill border-white/12 bg-white/6 text-white/88">{catalog.length} device categories</span>
                 <span className="stat-pill border-white/12 bg-white/6 text-white/88">{totalBrands} brands</span>
                 <span className="stat-pill border-white/12 bg-white/6 text-white/88">{totalModels} models</span>
-                <span className="stat-pill border-white/12 bg-white/6 text-white/88">{totalRepairs} repairs</span>
+                <span className="stat-pill border-white/12 bg-white/6 text-white/88">{totalRepairs} repairs listed</span>
               </div>
 
               <div className="panel-dark mt-8 max-w-2xl p-5 md:p-6">
-                <div className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-orange-soft)]">
-                  Global repair search
-                </div>
-                <label className="mt-3 block text-sm font-semibold text-white" htmlFor="repair-global-search">
-                  Search any brand, model, or repair
+                <label className="block text-sm font-semibold text-white mb-3" htmlFor="repair-global-search">
+                  Search by brand, model, or repair type
                 </label>
                 <input
                   id="repair-global-search"
                   type="search"
-                  className="form-input form-input-light mt-3"
-                  placeholder="e.g. iPhone 14 battery, MacBook Air screen, PS5 HDMI"
+                  className="form-input form-input-light"
+                  placeholder="e.g. iPhone 14 battery, MacBook Air screen, PS5 HDMI..."
                   value={searchQuery}
                   onChange={(event) => setSearchQuery(event.target.value)}
                 />
@@ -199,7 +195,7 @@ export default function Repairs() {
                         <Link
                           key={result.id}
                           to={result.path}
-                          className="block rounded-2xl border border-white/10 bg-white/6 px-4 py-3 transition-colors hover:bg-white/10"
+                          className="block rounded border border-white/10 bg-white/6 px-4 py-3 transition-colors hover:bg-white/10"
                         >
                           <div className="flex items-start justify-between gap-3">
                             <div className="min-w-0 flex-1">
@@ -214,14 +210,14 @@ export default function Repairs() {
                         </Link>
                       ))
                     ) : (
-                      <div className="rounded-2xl border border-white/10 bg-white/6 px-4 py-3 text-sm text-white/68">
-                        No matching brands, models, or repairs found yet. Try a wider search term.
+                      <div className="rounded border border-white/10 bg-white/6 px-4 py-3 text-sm text-white/68">
+                        No results found. Try a different search term or call us on 020 8878 7266.
                       </div>
                     )}
                   </div>
                 ) : (
-                  <p className="mt-3 text-sm leading-relaxed text-white/62">
-                    Search straight into the catalog instead of browsing manually when you already know the device or repair.
+                  <p className="mt-3 text-sm leading-relaxed text-white/55">
+                    Not sure where to start? Just type your device name and we'll show you what's available.
                   </p>
                 )}
               </div>
@@ -230,18 +226,14 @@ export default function Repairs() {
             <div className="panel-dark p-6 md:p-8">
               <div className="flex items-center justify-between gap-4">
                 <div>
-                  <div className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-orange-soft)]">
-                    Start by category
-                  </div>
-                  <h2 className="mt-2 text-2xl font-extrabold text-white">Browse the repair catalog</h2>
+                  <h2 className="text-2xl font-extrabold text-white">Browse by device</h2>
                 </div>
-                <span className="stat-pill border-white/12 bg-white/6 text-white/88">Live pricing paths</span>
               </div>
 
               <div className="mt-5 grid gap-4 sm:grid-cols-2">
                 {isLoadingCatalog && !catalog.length ? (
-                  <div className="rounded-3xl border border-white/10 bg-white/5 p-5 text-white/72 sm:col-span-2">
-                    Loading live repair categories...
+                  <div className="rounded border border-white/10 bg-white/5 p-5 text-white/72 sm:col-span-2">
+                    Loading repair categories...
                   </div>
                 ) : catalog.map((category) => {
                   const counts = getCounts(category)

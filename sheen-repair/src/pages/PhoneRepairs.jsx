@@ -62,9 +62,9 @@ export default function PhoneRepairs() {
       </Helmet>
 
       {/* Page header */}
-      <section style={{ backgroundColor: '#1c2d4a' }} className="py-12">
+      <section className="py-12 bg-[#111111] text-white">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="flex items-center gap-2 text-sm mb-4" style={{ color: 'rgba(255,255,255,0.55)' }}>
+          <div className="flex items-center gap-2 text-sm mb-4 text-white/50">
             <Link to="/" className="hover:text-white transition-colors">Home</Link>
             <span>/</span>
             <span className="text-white/80">Phone Repairs</span>
@@ -72,7 +72,7 @@ export default function PhoneRepairs() {
           <h1 className="text-3xl sm:text-4xl font-bold text-white mb-3">
             Mobile Phone Repairs in East Sheen
           </h1>
-          <p className="max-w-2xl text-lg" style={{ color: 'rgba(255,255,255,0.75)' }}>
+          <p className="max-w-2xl text-lg text-white/65">
             iPhone, Samsung, Google Pixel and more — most repairs done same day at
             65 Sheen Lane, London SW14. Walk-ins welcome.
           </p>
@@ -94,12 +94,12 @@ export default function PhoneRepairs() {
       <section className="section-pad">
         <div className="max-w-6xl mx-auto px-4">
           <span className="section-label">What we fix</span>
-          <h2 className="text-2xl font-bold mb-8" style={{ color: '#1c2d4a' }}>Phone repair services</h2>
+          <h2 className="text-2xl font-bold mb-8" >Phone repair services</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {repairs.map(({ title, body }) => (
               <div key={title} className="service-card">
-                <h3 className="font-semibold mb-2" style={{ color: '#1c2d4a', fontSize: '0.9375rem' }}>{title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: '#555' }}>{body}</p>
+                <h3 className="font-semibold mb-2 text-[var(--color-text)] text-[0.9375rem]">{title}</h3>
+                <p className="text-sm leading-relaxed">{body}</p>
               </div>
             ))}
           </div>
@@ -107,9 +107,9 @@ export default function PhoneRepairs() {
       </section>
 
       {/* Brands */}
-      <section className="section-pad" style={{ backgroundColor: '#f8f6f2' }}>
+      <section className="section-pad bg-[var(--color-bg-alt)]">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-3" style={{ color: '#1c2d4a' }}>Phone brands we repair</h2>
+          <h2 className="text-2xl font-bold mb-3" >Phone brands we repair</h2>
           <p className="text-gray-500 mb-6">
             We work with all major brands. If your phone isn&apos;t listed, give us a call — we may still
             be able to help.
@@ -118,8 +118,7 @@ export default function PhoneRepairs() {
             {brands.map((b) => (
               <span
                 key={b}
-                className="text-sm px-3 py-1.5 rounded font-medium"
-                style={{ backgroundColor: '#fff', color: '#1c2d4a', border: '1px solid #ddd8ce' }}
+                className="bg-white border border-[var(--color-border)] rounded-md px-3 py-1.5 text-sm font-medium"
               >
                 {b}
               </span>
@@ -131,22 +130,22 @@ export default function PhoneRepairs() {
       {/* Info boxes */}
       <section className="section-pad">
         <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-6">
-          <div className="rounded-lg p-5" style={{ backgroundColor: '#f8f6f2', border: '1px solid #e5e1d8' }}>
-            <div className="font-semibold mb-2" style={{ color: '#1c2d4a' }}>Same-day repairs</div>
+          <div className="p-5 bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-xl">
+            <div className="font-semibold mb-2">Same-day repairs</div>
             <p className="text-sm text-gray-500 leading-relaxed">
               We stock screens and batteries for the most common iPhone and Samsung models.
               Most screen and battery jobs are done within a couple of hours.
             </p>
           </div>
-          <div className="rounded-lg p-5" style={{ backgroundColor: '#f8f6f2', border: '1px solid #e5e1d8' }}>
-            <div className="font-semibold mb-2" style={{ color: '#1c2d4a' }}>90-day warranty</div>
+          <div className="p-5 bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-xl">
+            <div className="font-semibold mb-2">90-day warranty</div>
             <p className="text-sm text-gray-500 leading-relaxed">
               All phone repairs come with a 90-day warranty on parts and labour.
               If the same issue comes back, we&apos;ll fix it at no charge.
             </p>
           </div>
-          <div className="rounded-lg p-5" style={{ backgroundColor: '#f8f6f2', border: '1px solid #e5e1d8' }}>
-            <div className="font-semibold mb-2" style={{ color: '#1c2d4a' }}>No fix, no fee</div>
+          <div className="p-5 bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-xl">
+            <div className="font-semibold mb-2">No fix, no fee</div>
             <p className="text-sm text-gray-500 leading-relaxed">
               We don&apos;t charge for diagnostics we can&apos;t act on. Get a quote with no
               obligation — if you decide not to proceed, you don&apos;t pay.
@@ -156,9 +155,9 @@ export default function PhoneRepairs() {
       </section>
 
       {/* Also see */}
-      <section className="section-pad" style={{ backgroundColor: '#f8f6f2' }}>
+      <section className="section-pad bg-[var(--color-bg-alt)]">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-xl font-bold mb-4" style={{ color: '#1c2d4a' }}>Also looking for…</h2>
+          <h2 className="text-xl font-bold mb-4" >Also looking for…</h2>
           <div className="flex flex-wrap gap-3">
             <Link to="/laptop-macbook-repairs" className="btn-secondary text-sm">Laptop &amp; MacBook Repairs</Link>
             <Link to="/other-repairs" className="btn-secondary text-sm">TV &amp; Console Repairs</Link>
@@ -168,10 +167,10 @@ export default function PhoneRepairs() {
       </section>
 
       {/* Contact CTA */}
-      <section className="section-pad" style={{ backgroundColor: '#1c2d4a' }}>
+      <section className="section-pad bg-[#111111] text-white">
         <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-2xl font-bold text-white mb-2">Get a repair quote</h2>
-          <p className="mb-6" style={{ color: 'rgba(255,255,255,0.65)' }}>
+          <p className="mb-6" >
             Describe the fault and your phone model — we&apos;ll get back to you quickly. Or call us
             directly on{' '}
             <a href="tel:02088787266" className="text-white underline font-medium">020 8878 7266</a>.
