@@ -15,6 +15,7 @@ import RepairCategory from './pages/RepairCategory'
 import RepairBrand from './pages/RepairBrand'
 import RepairModel from './pages/RepairModel'
 import BookRepair from './pages/BookRepair'
+import Checkout from './pages/Checkout'
 import Admin from './pages/Admin'
 
 export default function App() {
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="/repairs/:categorySlug/:brandSlug" element={<RepairBrand />} />
           <Route path="/repairs/:categorySlug/:brandSlug/:modelSlug" element={<RepairModel />} />
           <Route path="/book-repair" element={<BookRepair />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/phone-repairs" element={<PhoneRepairs />} />
           <Route path="/laptop-macbook-repairs" element={<LaptopRepairs />} />
