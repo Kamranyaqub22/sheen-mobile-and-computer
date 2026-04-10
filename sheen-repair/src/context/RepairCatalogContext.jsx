@@ -333,7 +333,7 @@ function buildRemoteRepairInsert(modelId, values, position, existingRepairs) {
 }
 
 export function RepairCatalogProvider({ children }) {
-  const [catalogData, setCatalogData] = useState(() => (useRemoteCatalog ? [] : readStorage(CATALOG_STORAGE_KEY, seedCatalog)))
+  const [catalogData, setCatalogData] = useState(() => (useRemoteCatalog ? seedCatalog : readStorage(CATALOG_STORAGE_KEY, seedCatalog)))
   const [bookings, setBookings] = useState(() => (useRemoteCatalog ? [] : readStorage(BOOKINGS_STORAGE_KEY, [])))
   const [mediaLibrary, setMediaLibrary] = useState(() => normalizeMediaLibrary(readStorage(MEDIA_STORAGE_KEY, createEmptyMediaLibrary())))
   const [session, setSession] = useState(null)
