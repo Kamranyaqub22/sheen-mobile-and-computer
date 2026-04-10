@@ -27,7 +27,7 @@ export default function ContactForm({ light = false }) {
   if (submitted) {
     return (
       <div
-        className="rounded-3xl border p-6 text-center"
+        className="rounded-xl border p-6 text-center"
         style={{
           backgroundColor: light ? 'rgba(255,255,255,0.08)' : '#f0fdf4',
           borderColor: light ? 'rgba(255,255,255,0.2)' : '#86efac',
@@ -36,8 +36,8 @@ export default function ContactForm({ light = false }) {
         <svg className="mx-auto mb-3" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
         </svg>
-        <p className={`font-semibold ${light ? 'text-white' : 'text-gray-800'}`}>Message received — thank you!</p>
-        <p className={`text-sm mt-1 ${light ? 'text-white/70' : 'text-gray-500'}`}>
+        <p className={`font-semibold ${light ? 'text-white' : 'text-[var(--color-text)]'}`}>Message received — thank you!</p>
+        <p className={`text-sm mt-1 ${light ? 'text-white/70' : 'text-[var(--color-muted)]'}`}>
           We&apos;ll get back to you as soon as we can. If it&apos;s urgent, please call{' '}
           <a href="tel:02088787266" className="underline font-medium">020 8878 7266</a>.
         </p>
@@ -126,9 +126,9 @@ export default function ContactForm({ light = false }) {
         Send Enquiry
       </button>
 
-      <p className={`text-xs ${light ? 'text-white/50' : 'text-gray-400'}`}>
+      <p className={`text-xs ${light ? 'text-white/50' : 'text-[var(--color-muted)]'}`}>
         Or call us directly on{' '}
-        <a href="tel:02088787266" className={`font-medium ${light ? 'text-white/80 hover:text-white' : 'text-navy hover:underline'}`} style={!light ? { color: '#1c2d4a' } : {}}>
+        <a href="tel:02088787266" className={`font-medium ${light ? 'text-white/80 hover:text-white' : 'text-[var(--color-red)] hover:underline'}`}>
           020 8878 7266
         </a>
         {' '}for a faster response.

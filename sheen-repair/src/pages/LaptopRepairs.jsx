@@ -63,7 +63,7 @@ export default function LaptopRepairs() {
 
       {/* Page header */}
       <section className="py-12 bg-[#111111] text-white">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-2 text-sm mb-4 text-white/50">
             <Link to="/" className="hover:text-white transition-colors">Home</Link>
             <span>/</span>
@@ -92,15 +92,15 @@ export default function LaptopRepairs() {
 
       {/* MacBook vs Windows split */}
       <section className="section-pad bg-[var(--color-bg-alt)]">
-        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-6">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-6">
           <div className="rounded-lg p-6 bg-white border border-[var(--color-border)] rounded-xl">
             <h2 className="text-xl font-bold mb-3" >MacBook Repairs</h2>
-            <p className="text-sm text-gray-500 mb-4 leading-relaxed">
+            <p className="text-sm text-[var(--color-muted)] mb-4 leading-relaxed">
               Apple devices are expensive — we understand you want them repaired properly.
               We work on all MacBook Pro and MacBook Air models, including M1, M2 and M3 chip
               variants. Screen, battery, keyboard, software — most jobs don&apos;t need to go to Apple.
             </p>
-            <ul className="text-sm text-gray-600 space-y-1.5">
+            <ul className="text-sm text-[var(--color-text)] space-y-1.5">
               {['MacBook screen replacement','MacBook battery replacement','MacBook keyboard replacement','Logic board diagnostics','macOS reinstall & recovery','SSD upgrade or replacement'].map((i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-[var(--color-red)]">✓</span>{i}
@@ -110,12 +110,12 @@ export default function LaptopRepairs() {
           </div>
           <div className="rounded-lg p-6 bg-white border border-[var(--color-border)] rounded-xl">
             <h2 className="text-xl font-bold mb-3" >Windows Laptop Repairs</h2>
-            <p className="text-sm text-gray-500 mb-4 leading-relaxed">
+            <p className="text-sm text-[var(--color-muted)] mb-4 leading-relaxed">
               We repair Dell, HP, Lenovo, Asus, Acer and most other brands. Whether it&apos;s a
               cracked screen, a laptop that won&apos;t start, or a slow machine that needs upgrading —
               bring it in for a free assessment.
             </p>
-            <ul className="text-sm text-gray-600 space-y-1.5">
+            <ul className="text-sm text-[var(--color-text)] space-y-1.5">
               {['Screen replacement','Battery replacement','Keyboard & trackpad','Motherboard repair','Windows reinstall & virus removal','RAM & SSD upgrade'].map((i) => (
                 <li key={i} className="flex items-center gap-2">
                   <span className="text-[var(--color-red)]">✓</span>{i}
@@ -128,7 +128,7 @@ export default function LaptopRepairs() {
 
       {/* Repairs grid */}
       <section className="section-pad">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <span className="section-label">All services</span>
           <h2 className="text-2xl font-bold mb-8" >Laptop &amp; MacBook repair services</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -144,9 +144,9 @@ export default function LaptopRepairs() {
 
       {/* Brands */}
       <section className="section-pad bg-[var(--color-bg-alt)]">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <h2 className="text-2xl font-bold mb-3" >Brands &amp; models we work on</h2>
-          <p className="text-gray-500 mb-5">
+          <p className="text-[var(--color-muted)] mb-5">
             Not sure if we cover your laptop? Call us — we handle most consumer brands.
           </p>
           <div className="flex flex-wrap gap-2">
@@ -161,7 +161,7 @@ export default function LaptopRepairs() {
 
       {/* Also see */}
       <section className="section-pad">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <h2 className="text-xl font-bold mb-4" >Also looking for…</h2>
           <div className="flex flex-wrap gap-3">
             <Link to="/phone-repairs" className="btn-secondary text-sm">Phone Repairs</Link>
@@ -173,7 +173,7 @@ export default function LaptopRepairs() {
 
       {/* Contact CTA */}
       <section className="section-pad bg-[#111111] text-white">
-        <div className="max-w-3xl mx-auto px-4">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <h2 className="text-2xl font-bold text-white mb-2">Need a laptop or MacBook repair?</h2>
           <p className="mb-6" >
             Describe what&apos;s happening and we&apos;ll advise. Or walk in — free diagnostics, no appointment needed.

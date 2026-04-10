@@ -31,7 +31,7 @@ export default function RepairBrand() {
   if (isLoadingCatalog && !catalog.length) {
     return (
       <section className="section-pad pt-16 md:pt-20">
-        <div className="max-w-4xl mx-auto px-4">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="panel-card p-8 text-center">
             <div className="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-clay)]">Loading brand page</div>
             <h1 className="mt-3 text-3xl font-extrabold text-[var(--color-ink)]">Fetching repair models</h1>
@@ -60,7 +60,7 @@ export default function RepairBrand() {
       </Helmet>
 
       <section className="section-pad pt-16 md:pt-20 bg-[linear-gradient(135deg,_rgba(255,139,0,0.16),_rgba(255,250,245,0.96))]">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <div className="text-sm text-[var(--color-clay)]">
             <Link to="/repairs" className="hover:text-[var(--color-orange-deep)]">Repairs</Link>
             <span className="mx-2">/</span>
@@ -115,7 +115,7 @@ export default function RepairBrand() {
       </section>
 
       <section className="section-pad">
-        <div className="max-w-6xl mx-auto px-4 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {filteredModels.map((model) => (
             <Link
               key={model.id}

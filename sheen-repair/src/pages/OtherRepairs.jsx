@@ -43,7 +43,7 @@ export default function OtherRepairs() {
 
       {/* Page header */}
       <section className="py-12 bg-[#111111] text-white">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-2 text-sm mb-4 text-white/50">
             <Link to="/" className="hover:text-white transition-colors">Home</Link>
             <span>/</span>
@@ -72,7 +72,7 @@ export default function OtherRepairs() {
 
       {/* Repair sections */}
       <section className="section-pad">
-        <div className="max-w-6xl mx-auto px-4 space-y-12">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 space-y-12">
           {faults.map(({ category, items }) => (
             <div key={category}>
               <h2 className="text-xl font-bold mb-5 text-[var(--color-text)] border-b border-[var(--color-border)] pb-2">{category}</h2>
@@ -91,10 +91,10 @@ export default function OtherRepairs() {
 
       {/* Call out services */}
       <section className="section-pad bg-[var(--color-bg-alt)]">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <div className="rounded-lg p-6 md:p-8 bg-white border border-[var(--color-border)] rounded-xl">
             <h2 className="text-xl font-bold mb-3" >Call-out service available</h2>
-            <p className="text-gray-500 mb-4 max-w-2xl leading-relaxed">
+            <p className="text-[var(--color-muted)] mb-4 max-w-2xl leading-relaxed">
               For large items like TVs or desktop computers that are difficult to bring in, we can
               arrange a call-out to your home or office in the East Sheen, Richmond and Barnes area.
               Call us to discuss availability and pricing.
@@ -106,7 +106,7 @@ export default function OtherRepairs() {
 
       {/* Also see */}
       <section className="section-pad">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <h2 className="text-xl font-bold mb-4" >Also looking for…</h2>
           <div className="flex flex-wrap gap-3">
             <Link to="/phone-repairs" className="btn-secondary text-sm">Phone Repairs</Link>
@@ -118,7 +118,7 @@ export default function OtherRepairs() {
 
       {/* Contact CTA */}
       <section className="section-pad bg-[#111111] text-white">
-        <div className="max-w-3xl mx-auto px-4">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <h2 className="text-2xl font-bold text-white mb-2">Got a broken TV or console?</h2>
           <p className="mb-6" >
             Bring it in or drop us a message with the make, model and fault. Free diagnosis on all devices.

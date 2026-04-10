@@ -150,7 +150,7 @@ export default function Repairs() {
 
       <section className="page-hero">
         <div className="page-hero-shell">
-          <div className="max-w-6xl mx-auto px-4 grid gap-10 lg:grid-cols-[minmax(0,1.02fr)_minmax(20rem,0.98fr)] items-start">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-6 grid gap-10 lg:grid-cols-[minmax(0,1.02fr)_minmax(20rem,0.98fr)] items-start">
             <div>
               <span className="section-label text-[var(--color-orange-soft)]">East Sheen · 65 Sheen Lane · SW14</span>
               <h1 className="max-w-3xl text-4xl font-black tracking-tight text-white md:text-6xl uppercase">
@@ -280,12 +280,12 @@ export default function Repairs() {
       </section>
 
       <section className="section-pad bg-[var(--color-cream)]">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <span className="section-label">Repair categories</span>
-              <h2 className="text-3xl md:text-4xl font-black tracking-tight text-[var(--color-ink)]">
-                Category pages ready for admin-managed content
+              <h2 className="text-3xl md:text-4xl font-black tracking-tight text-[var(--color-ink)] uppercase">
+                Browse by Device Type
               </h2>
             </div>
             <Link to="/book-repair" className="btn-secondary self-start text-sm">
@@ -313,7 +313,7 @@ export default function Repairs() {
                   </p>
                   <div className="mt-6 space-y-4">
                     {firstBrands.map((brand) => (
-                      <div key={brand.id} className="rounded-2xl border border-[var(--color-border)] bg-white p-4">
+                      <div key={brand.id} className="rounded-lg border border-[var(--color-border)] bg-white p-4">
                         <div className="flex flex-wrap items-center justify-between gap-3">
                           <div className="min-w-0 flex-1">
                             <BrandBadge brand={brand} category={category} compact className="max-w-full" />
@@ -328,7 +328,7 @@ export default function Repairs() {
                             <Link
                               key={model.id}
                               to={`/repairs/${category.slug}/${brand.slug}/${model.slug}`}
-                              className="rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1.5 text-xs font-semibold text-[var(--color-ink)] transition-colors hover:border-[var(--color-orange)] hover:text-[var(--color-orange-deep)]"
+                              className="rounded border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1.5 text-xs font-semibold text-[var(--color-ink)] transition-colors hover:border-[var(--color-red)] hover:text-[var(--color-red)]"
                             >
                               {model.name}
                             </Link>
@@ -350,22 +350,22 @@ export default function Repairs() {
       </section>
 
       <section className="section-pad">
-        <div className="max-w-6xl mx-auto px-4 grid gap-5 md:grid-cols-3">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 grid gap-5 md:grid-cols-3">
           {[
             {
               step: '01',
-              title: 'Choose the exact device',
-              body: 'Start with the device category, then open the correct brand and model so pricing stays accurate.',
+              title: 'Choose your device',
+              body: 'Pick the category, then select the brand and model so pricing is accurate.',
             },
             {
               step: '02',
               title: 'Pick the repair type',
-              body: 'Every model can have its own screen, battery, charging, diagnostic, or board-level service list.',
+              body: 'Screen, battery, charging port, water damage, or diagnostics — select what needs fixing.',
             },
             {
               step: '03',
-              title: 'Book the repair service',
-              body: 'The booking form carries the selected device and repair details straight into the admin queue.',
+              title: 'Book or walk in',
+              body: 'Book online or walk straight in to our shop on Sheen Lane — no appointment required.',
             },
           ].map((item) => (
             <div key={item.step} className="panel-card p-6">

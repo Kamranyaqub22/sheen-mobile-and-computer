@@ -16,7 +16,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full">
       {/* Top info bar */}
       <div className="bg-[#0f0f0f] border-b border-white/8">
-        <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-2 text-xs text-white/60">
+        <div className="max-w-[1440px] mx-auto flex items-center justify-between px-4 py-2 text-xs text-white/60">
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -44,7 +44,7 @@ export default function Header() {
 
       {/* Main nav bar */}
       <div className="bg-[#111111] shadow-[0_1px_0_rgba(255,255,255,0.06)]">
-        <div className="max-w-6xl mx-auto flex h-[60px] items-center justify-between gap-4 px-4">
+        <div className="max-w-[1440px] mx-auto flex h-[60px] items-center justify-between gap-4 px-4">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 shrink-0" aria-label="Sheen Repair — Home">
             <span className="h-9 w-9 flex items-center justify-center bg-white rounded-lg overflow-hidden">
@@ -52,7 +52,7 @@ export default function Header() {
             </span>
             <span className="flex flex-col leading-tight">
               <span className="text-white font-bold text-sm tracking-tight">Sheen Repair</span>
-              <span className="text-white/45 text-[10px] font-medium uppercase tracking-widest">East Sheen · SW14</span>
+              <span className="text-white/70 text-[10px] font-medium uppercase tracking-widest">East Sheen · SW14</span>
             </span>
           </Link>
 

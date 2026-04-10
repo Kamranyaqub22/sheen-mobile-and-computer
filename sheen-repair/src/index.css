@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400&family=Barlow+Condensed:wght@600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400&family=Barlow+Condensed:wght@600;700;800;900&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -216,6 +216,16 @@ img {
 
 /* ── Spacing ────────────────────────────────────────────────── */
 
+/* Full-width page container — replaces max-w-6xl mx-auto px-4 */
+.page-container {
+  width: 100%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1rem, 4vw, 4rem);
+  padding-right: clamp(1rem, 4vw, 4rem);
+}
+
 .section-pad {
   padding-top: clamp(4rem, 7vw, 5.5rem);
   padding-bottom: clamp(4rem, 7vw, 5.5rem);
@@ -358,6 +368,13 @@ img {
   padding: 0.4rem 0.8rem;
   font-weight: 600;
   letter-spacing: 0.01em;
+}
+
+/* stat-pill on light backgrounds */
+.stat-pill-accent {
+  border-color: var(--color-border);
+  background: var(--color-bg-alt);
+  color: var(--color-text);
 }
 
 .price-pill {

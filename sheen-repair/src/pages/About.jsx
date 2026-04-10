@@ -13,7 +13,7 @@ export default function About() {
       {/* Hero */}
       <section className="page-hero">
         <div className="page-hero-shell">
-          <div className="max-w-6xl mx-auto px-4">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
             <div className="mb-4 flex items-center gap-2 text-sm text-white/50">
               <Link to="/" className="hover:text-white transition-colors">Home</Link>
               <span>/</span>
@@ -36,7 +36,7 @@ export default function About() {
 
       {/* Main content */}
       <section className="section-pad bg-white">
-        <div className="max-w-5xl mx-auto px-4">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div>
               <span className="section-label">Who we are</span>
@@ -77,7 +77,7 @@ export default function About() {
 
       {/* What we repair */}
       <section className="section-pad bg-[var(--color-bg-alt)]">
-        <div className="max-w-5xl mx-auto px-4">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
           <span className="section-label">What we fix</span>
           <h2 className="text-4xl font-black text-[var(--color-text)] uppercase mb-8">What We Repair</h2>
           <div className="grid sm:grid-cols-2 gap-4 mb-8">
@@ -110,7 +110,7 @@ export default function About() {
 
       {/* CTA */}
       <section className="bg-[var(--color-red)] text-white py-14">
-        <div className="max-w-3xl mx-auto px-4 text-center">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-4xl font-black uppercase mb-3">Come and See Us</h2>
           <p className="mb-6 text-white/80 text-lg">
             65 Sheen Lane, East Sheen, London SW14 8AD.<br />

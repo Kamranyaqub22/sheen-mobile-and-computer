@@ -20,7 +20,7 @@ export default function RepairModel() {
   if (isLoadingCatalog && !catalog.length) {
     return (
       <section className="section-pad pt-16 md:pt-20">
-        <div className="max-w-4xl mx-auto px-4">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="panel-card p-8 text-center">
             <div className="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-clay)]">Loading repair services</div>
             <h1 className="mt-3 text-3xl font-extrabold text-[var(--color-ink)]">Fetching model details</h1>
@@ -45,7 +45,7 @@ export default function RepairModel() {
       </Helmet>
 
       <section className="section-pad pt-16 md:pt-20 bg-[radial-gradient(circle_at_top_left,_rgba(255,154,33,0.14),_transparent_35%),linear-gradient(180deg,_#fff8f1_0%,_#fffdfb_100%)]">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <div className="text-sm text-[var(--color-clay)]">
             <Link to="/repairs" className="hover:text-[var(--color-orange-deep)]">Repairs</Link>
             <span className="mx-2">/</span>
@@ -105,7 +105,7 @@ export default function RepairModel() {
       </section>
 
       <section className="section-pad">
-        <div className="max-w-6xl mx-auto px-4 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {model.repairs.map((repair) => (
             <div key={repair.id} className="panel-card p-6 flex flex-col">
               <div className="flex items-start justify-between gap-3">

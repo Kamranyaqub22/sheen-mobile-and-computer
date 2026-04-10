@@ -21,7 +21,7 @@ export default function Accessories() {
 
       <section className="page-hero">
         <div className="page-hero-shell">
-          <div className="max-w-6xl mx-auto px-4 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.82fr)] items-end">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.82fr)] items-end">
             <div>
               <div className="mb-4 flex items-center gap-2 text-sm text-white/55">
                 <Link to="/" className="transition-colors hover:text-white">Home</Link>
@@ -61,10 +61,10 @@ export default function Accessories() {
 
       {/* Accessories */}
       <section className="section-pad">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <span className="section-label">In-store stock</span>
           <h2 className="text-2xl font-bold mb-3" >Phone &amp; gadget accessories</h2>
-          <p className="text-gray-500 mb-7 max-w-xl">
+          <p className="text-[var(--color-muted)] mb-7 max-w-xl">
             We keep a practical range of accessories in the shop. Stock changes — call ahead if you
             need something specific and we&apos;ll let you know if we have it.
           </p>
@@ -81,16 +81,16 @@ export default function Accessories() {
 
       {/* Buy & Sell */}
       <section className="section-pad bg-[var(--color-bg-alt)]">
-        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-8">
           {/* Buy */}
           <div className="panel-card p-6">
             <h2 className="text-xl font-bold mb-3" >Buy a second-hand device</h2>
-            <p className="text-sm text-gray-500 mb-4 leading-relaxed">
+            <p className="text-sm text-[var(--color-muted)] mb-4 leading-relaxed">
               We sell refurbished phones and laptops in-store. Stock changes regularly —
               all devices are tested and cleaned before sale. Come in or call to find
               out what we have available at the moment.
             </p>
-            <ul className="text-sm text-gray-600 space-y-1.5 mb-5">
+            <ul className="text-sm text-[var(--color-text)] space-y-1.5 mb-5">
               {['Refurbished iPhones','Samsung Galaxy devices','Windows laptops','MacBooks (when available)','All tested before sale','Sold with a short warranty'].map((i) => (
                 <li key={i} className="flex gap-2"><span className="text-[var(--color-red)]">✓</span>{i}</li>
               ))}
@@ -103,12 +103,12 @@ export default function Accessories() {
           {/* Sell */}
           <div className="panel-card p-6">
             <h2 className="text-xl font-bold mb-3" >Sell or trade in your device</h2>
-            <p className="text-sm text-gray-500 mb-4 leading-relaxed">
+            <p className="text-sm text-[var(--color-muted)] mb-4 leading-relaxed">
               Got an old phone or laptop sitting in a drawer? We buy used devices for cash — working
               or faulty. Prices are agreed on the day based on the condition and model.
               No appointment needed.
             </p>
-            <ul className="text-sm text-gray-600 space-y-1.5 mb-5">
+            <ul className="text-sm text-[var(--color-text)] space-y-1.5 mb-5">
               {['iPhones — working or faulty','Samsung and Android phones','Windows laptops','MacBooks (working or damaged)','Tablets and iPads','We assess on the spot'].map((i) => (
                 <li key={i} className="flex gap-2"><span className="text-[var(--color-red)]">✓</span>{i}</li>
               ))}
@@ -122,7 +122,7 @@ export default function Accessories() {
 
       {/* Also see */}
       <section className="section-pad">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <h2 className="text-xl font-bold mb-4" >Also looking for…</h2>
           <div className="flex flex-wrap gap-3">
             <Link to="/repairs/phones" className="btn-secondary text-sm">Phone Repairs</Link>
@@ -133,7 +133,7 @@ export default function Accessories() {
       </section>
 
       <section className="accent-banner section-pad-tight">
-        <div className="relative max-w-3xl mx-auto px-4 text-center">
+        <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-2xl font-bold text-white mb-3">Come in and see what we have</h2>
           <p className="text-white/80 mb-6">
             65 Sheen Lane, East Sheen SW14. Open Monday–Friday 9am–6:30pm, Saturday 9:30am–5:30pm.

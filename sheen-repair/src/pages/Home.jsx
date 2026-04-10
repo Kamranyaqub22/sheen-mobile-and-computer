@@ -204,7 +204,7 @@ export default function Home() {
 
       {/* ── HERO ── */}
       <section className="bg-[#111111] text-white">
-        <div className="max-w-6xl mx-auto px-4 pt-14 pb-16 md:pt-20 md:pb-24 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 pt-14 pb-16 md:pt-20 md:pb-24 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
           <div>
             <div className="inline-flex items-center gap-2 bg-[var(--color-red)] text-white text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded mb-6">
               <span className="w-1.5 h-1.5 bg-white rounded-full inline-block"></span>
@@ -230,7 +230,7 @@ export default function Home() {
                 Book a Repair
               </Link>
             </div>
-            <div className="mt-8 grid grid-cols-3 gap-3">
+            <div className="mt-8 grid grid-cols-3 gap-2 sm:gap-3">
               {[
                 ['Same day', 'Common repairs'],
                 ['No fix', 'No fee'],
@@ -238,7 +238,7 @@ export default function Home() {
               ].map(([top, bottom]) => (
                 <div key={top} className="bg-white/6 border border-white/10 rounded-lg px-4 py-4 text-center">
                   <div className="text-white font-bold text-lg leading-tight">{top}</div>
-                  <div className="text-white/45 text-xs mt-1">{bottom}</div>
+                  <div className="text-white/70 text-xs mt-1">{bottom}</div>
                 </div>
               ))}
             </div>
@@ -254,10 +254,10 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-white/6 border border-white/10 rounded-xl p-4">
-                <div className="text-white/40 text-[11px] uppercase tracking-widest font-semibold mb-2">Opening Hours</div>
+                <div className="text-white/65 text-[11px] uppercase tracking-widest font-semibold mb-2">Opening Hours</div>
                 <div className="text-white text-sm font-medium">Mon–Fri 9am–6:30pm</div>
                 <div className="text-white text-sm font-medium">Sat 9:30am–5:30pm</div>
-                <div className="text-white/35 text-sm">Sun Closed</div>
+                <div className="text-white/60 text-sm">Sun Closed</div>
               </div>
               <div className="overflow-hidden rounded-xl border border-white/10">
                 <img src="/media/phone-repair.png" alt="Phone repair" className="w-full h-full object-cover" />
@@ -269,7 +269,7 @@ export default function Home() {
 
       {/* ── TRUST STRIP ── */}
       <section className="bg-[var(--color-red)] text-white py-4">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm font-semibold">
             {['✓ Same-day repairs available', '✓ 90-day warranty on all repairs', '✓ No fix, no fee policy', '✓ Genuine & quality parts used', '✓ Walk-ins welcome Mon–Sat'].map((item) => (
               <span key={item}>{item}</span>
@@ -280,7 +280,7 @@ export default function Home() {
 
       {/* ── SERVICES ── */}
       <section className="section-pad bg-[var(--color-bg-alt)]">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
             <div>
               <span className="section-label">What we fix</span>
@@ -324,7 +324,7 @@ export default function Home() {
 
       {/* ── WHY US ── */}
       <section className="section-pad bg-white">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <span className="section-label">Why choose us</span>
@@ -359,8 +359,8 @@ export default function Home() {
 
       {/* ── HOW IT WORKS ── */}
       <section className="section-pad bg-[#111111] text-white">
-        <div className="max-w-6xl mx-auto px-4">
-          <span className="section-label">Simple process</span>
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
+          <span className="section-label text-white/65">Simple process</span>
           <h2 className="text-4xl md:text-5xl font-black text-white uppercase mb-10">
             How It Works
           </h2>
@@ -386,7 +386,7 @@ export default function Home() {
 
       {/* ── REVIEWS ── */}
       <section className="section-pad bg-[var(--color-bg-alt)]">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <span className="section-label">Customer reviews</span>
           <div className="flex flex-col sm:flex-row sm:items-end gap-4 mb-8">
             <h2 className="text-4xl md:text-5xl font-black text-[var(--color-text)] uppercase">
@@ -419,7 +419,7 @@ export default function Home() {
 
       {/* ── DEVICES ── */}
       <section className="section-pad bg-white">
-        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-10 items-center">
           <div>
             <span className="section-label">Devices we repair</span>
             <h2 className="text-4xl md:text-5xl font-black text-[var(--color-text)] uppercase leading-tight mb-4">
@@ -451,7 +451,7 @@ export default function Home() {
 
       {/* ── LOCAL AREAS ── */}
       <section className="section-pad bg-[var(--color-bg-alt)]">
-        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-start">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-10 items-start">
           <div>
             <span className="section-label">Serving SW London</span>
             <h2 className="text-4xl md:text-5xl font-black text-[var(--color-text)] uppercase leading-tight mb-4">
@@ -489,7 +489,7 @@ export default function Home() {
 
       {/* ── FAQ ── */}
       <section className="section-pad bg-white">
-        <div className="max-w-3xl mx-auto px-4">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <span className="section-label">FAQs</span>
           <h2 className="text-4xl md:text-5xl font-black text-[var(--color-text)] uppercase mb-8">
             Common Questions
@@ -510,7 +510,7 @@ export default function Home() {
 
       {/* ── CONTACT ── */}
       <section className="section-pad bg-[var(--color-bg-alt)]" id="contact">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <span className="section-label">Get in touch</span>
           <h2 className="text-4xl md:text-5xl font-black text-[var(--color-text)] uppercase mb-8">
             Contact Us

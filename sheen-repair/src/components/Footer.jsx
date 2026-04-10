@@ -26,15 +26,15 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#111111] text-white/55 border-t border-white/8">
-      <div className="max-w-6xl mx-auto px-4 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 
         {/* Brand */}
         <div className="lg:col-span-1 flex flex-col gap-4">
           <div>
             <span className="text-white font-bold text-lg block leading-snug">Sheen Repair</span>
-            <span className="text-white/40 text-xs uppercase tracking-widest font-medium mt-1 block">East Sheen · SW14</span>
+            <span className="text-white/65 text-xs uppercase tracking-widest font-medium mt-1 block">East Sheen · SW14</span>
           </div>
-          <p className="text-sm leading-relaxed text-white/45">
+          <p className="text-sm leading-relaxed text-white/70">
             Your local repair shop on Sheen Lane. We fix iPhones, Samsungs,
             laptops, MacBooks, tablets, and more. Walk-ins always welcome.
           </p>
@@ -97,7 +97,7 @@ export default function Footer() {
               <a href="tel:02088787266" className="text-white/50 hover:text-white transition-colors">020 8878 7266</a>
             </li>
             <li className="pt-1 text-white/50">
-              <span className="block text-white/30 text-xs uppercase tracking-wider mb-2">Opening Hours</span>
+              <span className="block text-white/55 text-xs uppercase tracking-wider mb-2">Opening Hours</span>
               <span className="block">Mon – Fri: 9:00 am – 6:30 pm</span>
               <span className="block">Saturday: 9:30 am – 5:30 pm</span>
               <span className="block">Sunday: Closed</span>
@@ -108,7 +108,7 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-white/8">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-white/30">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-white/55">
           <span>© {year} Sheen Repair, 65 Sheen Lane, East Sheen, London SW14. All rights reserved.</span>
           <span className="hidden sm:block">Phone repair East Sheen · iPhone repair Richmond · Laptop repair SW14</span>
         </div>

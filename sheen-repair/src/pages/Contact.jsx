@@ -17,7 +17,7 @@ export default function Contact() {
       {/* Hero */}
       <section className="page-hero">
         <div className="page-hero-shell">
-          <div className="max-w-6xl mx-auto px-4">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
             <div className="mb-4 flex items-center gap-2 text-sm text-white/50">
               <Link to="/" className="hover:text-white transition-colors">Home</Link>
               <span>/</span>
@@ -40,7 +40,7 @@ export default function Contact() {
 
       {/* Quick contact row */}
       <section className="border-b border-[var(--color-border)] bg-[var(--color-bg-alt)]">
-        <div className="max-w-6xl mx-auto px-4 py-6 grid sm:grid-cols-3 gap-3">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 py-6 grid sm:grid-cols-3 gap-3">
           <a href="tel:02088787266" className="quick-action-card">
             <span className="quick-action-icon bg-[var(--color-red)] text-white">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -79,7 +79,7 @@ export default function Contact() {
 
       {/* Main content */}
       <section className="section-pad bg-white">
-        <div className="max-w-6xl mx-auto px-4 grid gap-8 md:grid-cols-[1fr_1fr] items-start">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 grid gap-8 md:grid-cols-[1fr_1fr] items-start">
           <div>
             <h2 className="text-3xl font-black text-[var(--color-text)] uppercase mb-2">Send Us a Message</h2>
             <p className="text-sm text-[var(--color-muted)] mb-6">

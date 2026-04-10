@@ -63,7 +63,7 @@ export default function PhoneRepairs() {
 
       {/* Page header */}
       <section className="py-12 bg-[#111111] text-white">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-2 text-sm mb-4 text-white/50">
             <Link to="/" className="hover:text-white transition-colors">Home</Link>
             <span>/</span>
@@ -92,7 +92,7 @@ export default function PhoneRepairs() {
 
       {/* Repairs list */}
       <section className="section-pad">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <span className="section-label">What we fix</span>
           <h2 className="text-2xl font-bold mb-8" >Phone repair services</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -108,9 +108,9 @@ export default function PhoneRepairs() {
 
       {/* Brands */}
       <section className="section-pad bg-[var(--color-bg-alt)]">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <h2 className="text-2xl font-bold mb-3" >Phone brands we repair</h2>
-          <p className="text-gray-500 mb-6">
+          <p className="text-[var(--color-muted)] mb-6">
             We work with all major brands. If your phone isn&apos;t listed, give us a call — we may still
             be able to help.
           </p>
@@ -129,24 +129,24 @@ export default function PhoneRepairs() {
 
       {/* Info boxes */}
       <section className="section-pad">
-        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-6">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 grid md:grid-cols-3 gap-6">
           <div className="p-5 bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-xl">
             <div className="font-semibold mb-2">Same-day repairs</div>
-            <p className="text-sm text-gray-500 leading-relaxed">
+            <p className="text-sm text-[var(--color-muted)] leading-relaxed">
               We stock screens and batteries for the most common iPhone and Samsung models.
               Most screen and battery jobs are done within a couple of hours.
             </p>
           </div>
           <div className="p-5 bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-xl">
             <div className="font-semibold mb-2">90-day warranty</div>
-            <p className="text-sm text-gray-500 leading-relaxed">
+            <p className="text-sm text-[var(--color-muted)] leading-relaxed">
               All phone repairs come with a 90-day warranty on parts and labour.
               If the same issue comes back, we&apos;ll fix it at no charge.
             </p>
           </div>
           <div className="p-5 bg-[var(--color-bg-alt)] border border-[var(--color-border)] rounded-xl">
             <div className="font-semibold mb-2">No fix, no fee</div>
-            <p className="text-sm text-gray-500 leading-relaxed">
+            <p className="text-sm text-[var(--color-muted)] leading-relaxed">
               We don&apos;t charge for diagnostics we can&apos;t act on. Get a quote with no
               obligation — if you decide not to proceed, you don&apos;t pay.
             </p>
@@ -156,7 +156,7 @@ export default function PhoneRepairs() {
 
       {/* Also see */}
       <section className="section-pad bg-[var(--color-bg-alt)]">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <h2 className="text-xl font-bold mb-4" >Also looking for…</h2>
           <div className="flex flex-wrap gap-3">
             <Link to="/laptop-macbook-repairs" className="btn-secondary text-sm">Laptop &amp; MacBook Repairs</Link>
@@ -168,7 +168,7 @@ export default function PhoneRepairs() {
 
       {/* Contact CTA */}
       <section className="section-pad bg-[#111111] text-white">
-        <div className="max-w-3xl mx-auto px-4">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <h2 className="text-2xl font-bold text-white mb-2">Get a repair quote</h2>
           <p className="mb-6" >
             Describe the fault and your phone model — we&apos;ll get back to you quickly. Or call us

@@ -31,7 +31,7 @@ export default function RepairCategory() {
   if (isLoadingCatalog && !catalog.length) {
     return (
       <section className="section-pad pt-16 md:pt-20">
-        <div className="max-w-4xl mx-auto px-4">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="panel-card p-8 text-center">
             <div className="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-clay)]">Loading category</div>
             <h1 className="mt-3 text-3xl font-extrabold text-[var(--color-ink)]">Fetching repair brands and models</h1>
@@ -76,7 +76,7 @@ export default function RepairCategory() {
       </Helmet>
 
       <section className="section-pad pt-16 md:pt-20 bg-[linear-gradient(135deg,_rgba(239,122,26,0.12),_rgba(255,247,238,0.92))]">
-        <div className="max-w-6xl mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6">
           <div className="text-sm text-[var(--color-clay)]">
             <Link to="/repairs" className="hover:text-[var(--color-orange-deep)]">Repairs</Link>
             <span className="mx-2">/</span>
@@ -125,7 +125,7 @@ export default function RepairCategory() {
       </section>
 
       <section className="section-pad">
-        <div className="max-w-6xl mx-auto px-4 space-y-6">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 space-y-6">
           {filteredBrands.map((brand) => (
             <div key={brand.id} className="panel-card p-6 md:p-7">
               <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">

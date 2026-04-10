@@ -69,7 +69,7 @@ export default function BookRepair() {
   if (isLoadingCatalog && !catalog.length) {
     return (
       <section className="section-pad pt-16 md:pt-20">
-        <div className="max-w-4xl mx-auto px-4">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="panel-card p-8 text-center">
             <div className="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-clay)]">
               Loading repair catalogue
@@ -89,7 +89,7 @@ export default function BookRepair() {
   if (!catalog.length) {
     return (
       <section className="section-pad pt-16 md:pt-20">
-        <div className="max-w-4xl mx-auto px-4">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="panel-card p-8 text-center">
             <div className="text-sm font-semibold uppercase tracking-[0.22em] text-[var(--color-clay)]">
               Booking unavailable
@@ -200,7 +200,7 @@ export default function BookRepair() {
       </Helmet>
 
       <section className="section-pad pt-16 md:pt-20 bg-[linear-gradient(135deg,_rgba(255,146,25,0.14),_rgba(255,248,240,1))]">
-        <div className="max-w-6xl mx-auto px-4 grid gap-8 lg:grid-cols-[1fr_0.92fr] items-start">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 grid gap-8 lg:grid-cols-[1fr_0.92fr] items-start">
           <div>
             <span className="section-label">Book repair service</span>
             <h1 className="text-4xl md:text-5xl font-black tracking-tight text-[var(--color-ink)]">
@@ -451,7 +451,7 @@ export default function BookRepair() {
       </section>
 
       <section className="section-pad pt-0">
-        <div className="max-w-6xl mx-auto px-4 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="panel-card p-6">
             <div className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-clay)]">Selected service</div>
             <ProductArtwork category={selectedCategory} brand={selectedBrand} model={selectedModel} className="mt-4 h-64" />
